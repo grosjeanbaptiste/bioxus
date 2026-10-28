@@ -1,0 +1,20 @@
+[workspace]
+resolver = "2"
+members = ["packages/*"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Baptiste Grosjean <grosjeanbaptiste@outlook.com>"]
+license-file = "LICENSE"
+
+[workspace.dependencies]
+# One Dioxus version for every consumer; ss is migrated 0.6 -> 0.7 first.
+dioxus = { version = "0.7", default-features = false, features = ["html", "macro", "signals", "hooks"] }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+warnings = "deny"
+
+[workspace.lints.clippy]
+all = { level = "deny", priority = -1 }

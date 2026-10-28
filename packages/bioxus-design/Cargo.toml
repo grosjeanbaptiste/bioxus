@@ -1,0 +1,10 @@
+[package]
+name = "bioxus-design"
+description = "Design system: tokens, constants and the shared stylesheet"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license-file = "../../LICENSE"
+
+[lints]
+workspace = true
