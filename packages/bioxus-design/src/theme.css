@@ -8,12 +8,14 @@
   --dim: #a0a7b6;
   --border: #d0d0d6;
   --accent: #4f6df5;
+  --on-accent: #ffffff;
+  --ok: #16a34a;
   --warn: #d97706;
   --danger: #dc2626;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:where(:not([data-scheme="light"], :has([data-scheme="light"]))) {
     --bg: #1c1c1f;
     --surface: #131316;
     --fg: #e8e8ea;
@@ -21,9 +23,29 @@
     --dim: #5d6779;
     --border: #2f2f35;
     --accent: #7c93f7;
+    --on-accent: #131316;
+    --ok: #4ade80;
     --warn: #e0953a;
     --danger: #ef6b6b;
   }
+}
+
+/* An element whose scheme attribute says light or dark forces that scheme for
+ * the whole page. Conditions sit in `:where()` so an app's plain `:root` override still wins. */
+:root:where([data-scheme="light"], :has([data-scheme="light"])) { color-scheme: light; }
+:root:where([data-scheme="dark"], :has([data-scheme="dark"])) {
+    color-scheme: dark;
+    --bg: #1c1c1f;
+    --surface: #131316;
+    --fg: #e8e8ea;
+    --muted: #9a9aa1;
+    --dim: #5d6779;
+    --border: #2f2f35;
+    --accent: #7c93f7;
+    --on-accent: #131316;
+    --ok: #4ade80;
+    --warn: #e0953a;
+    --danger: #ef6b6b;
 }
 
 * { box-sizing: border-box; }
