@@ -83,3 +83,16 @@ fn a_corrupt_png_is_an_error_even_when_an_svg_exists() {
     std::fs::write(dir.join("assets/icon.png"), b"junk").unwrap();
     assert!(matches!(resolve_png(&dir), Err(IconError::Invalid { .. })));
 }
+
+#[test]
+fn the_1024_of_an_ios_set_counts_as_the_apps_own_icon() {
+    let dir = scratch("set1024");
+    let set = dir.join("ui/mobile/assets/icons");
+    std::fs::create_dir_all(&set).unwrap();
+    std::fs::write(set.join("icon_1024x1024.png"), ios::DEFAULT_SET[12].1).unwrap();
+    assert_eq!(
+        resolve(&dir).unwrap().source,
+        Source::Provided(set.join("icon_1024x1024.png"))
+    );
+    assert_eq!(resolve_png(&dir).unwrap(), ios::DEFAULT_SET[12].1);
+}
