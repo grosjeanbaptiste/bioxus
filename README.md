@@ -14,9 +14,9 @@ bioxus = { git = "https://github.com/grosjeanbaptiste/bioxus", tag = "v0.0.0" }
 rsx! { style { {bioxus::design::STYLESHEET} } }
 ```
 
-Ready-made themes: set `data-theme="ocean|forest|sunset"` on the root element. `bioxus::design::form_factor::FormFactor` classifies a width as phone, tablet or desktop.
+Ready-made themes: set `data-theme="ocean|forest|sunset"` on the root element. The scheme follows the system; `data-scheme="light|dark"` on any element forces it for the page. `bioxus::design::form_factor::FormFactor` classifies a width as phone, tablet or desktop.
 
-An app overrides a token by redefining it after the stylesheet. Tokens: `bg surface fg muted dim border accent warn danger`, `rem` units only.
+An app overrides a token by redefining it after the stylesheet. Tokens: `bg surface fg muted dim border accent on-accent ok warn danger`, `rem` units only.
 
 Pick only what you need: `bioxus = { …, default-features = false, features = ["design"] }`. Inject `bioxus::widgets::STYLESHEET` after the design one.
 

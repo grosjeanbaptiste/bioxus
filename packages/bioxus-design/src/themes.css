@@ -3,7 +3,11 @@
 :root[data-theme="sunset"] { --accent: #c2410c; --bg: #fbf5f0; --border: #e6d3c6; }
 
 @media (prefers-color-scheme: dark) {
-  :root[data-theme="ocean"] { --accent: #38bdd8; --bg: #0f1a1e; --border: #25363c; }
-  :root[data-theme="forest"] { --accent: #5fc58a; --bg: #101a13; --border: #263a2c; }
-  :root[data-theme="sunset"] { --accent: #fb923c; --bg: #1c130e; --border: #3a2a20; }
+  :root[data-theme="ocean"]:where(:not([data-scheme="light"], :has([data-scheme="light"]))) { --accent: #38bdd8; --bg: #0f1a1e; --border: #25363c; }
+  :root[data-theme="forest"]:where(:not([data-scheme="light"], :has([data-scheme="light"]))) { --accent: #5fc58a; --bg: #101a13; --border: #263a2c; }
+  :root[data-theme="sunset"]:where(:not([data-scheme="light"], :has([data-scheme="light"]))) { --accent: #fb923c; --bg: #1c130e; --border: #3a2a20; }
 }
+
+:root[data-theme="ocean"]:where([data-scheme="dark"], :has([data-scheme="dark"])) { --accent: #38bdd8; --bg: #0f1a1e; --border: #25363c; }
+:root[data-theme="forest"]:where([data-scheme="dark"], :has([data-scheme="dark"])) { --accent: #5fc58a; --bg: #101a13; --border: #263a2c; }
+:root[data-theme="sunset"]:where([data-scheme="dark"], :has([data-scheme="dark"])) { --accent: #fb923c; --bg: #1c130e; --border: #3a2a20; }
