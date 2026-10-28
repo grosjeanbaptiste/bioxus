@@ -27,6 +27,7 @@ by git tag.
 
 | Package | Role (the Flutter monorepo twin) |
 |---|---|
+| `bioxus` | Facade apps import: `bioxus::design`, later `::widgets`, `::locale` |
 | `bioxus-design` | Design system: tokens, constants, shared CSS (`[private package]`) |
 | `bioxus-widgets` | Reusable widgets (`[private package]`), planned |
 | `bioxus-locale` | i18n (`[private package]`), planned |
