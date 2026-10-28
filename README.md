@@ -7,7 +7,7 @@ Layout and gates follow the `melos_apps` monorepo model: role-named packages und
 ## Use
 
 ```toml
-bioxus = { git = "https://github.com/grosjeanbaptiste/bioxus", tag = "v0.9.0" }
+bioxus = { git = "https://github.com/grosjeanbaptiste/bioxus", tag = "v0.0.0" }
 ```
 
 ```rust

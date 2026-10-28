@@ -3,9 +3,12 @@ use dioxus::prelude::*;
 
 #[component]
 fn Host(layout: Option<NavLayout>, active: String) -> Element {
-    let items = vec![NavItem::new("home", "Home"), NavItem::new("log", "Log")];
+    let items = vec![
+        NavItem::new("home", "Home").with_icon("H"),
+        NavItem::new("log", "Log"),
+    ];
     rsx! {
-        AppShell { items, active, on_select: |_| {}, layout, "content" }
+        AppShell { items, active, on_select: |_| {}, layout, title: "MyApp".to_string(), "content" }
         Badge { tone: Tone::Danger, "bad" }
     }
 }
@@ -119,4 +122,16 @@ fn input_kinds_map_to_native_types() {
         [InputKind::Text, InputKind::Number, InputKind::Date].map(InputKind::as_str),
         ["text", "number", "date"]
     );
+}
+
+#[test]
+fn title_names_the_nav_and_icons_are_decorative() {
+    let html = render(None, "home");
+    assert!(html.contains("aria-label=\"MyApp\"") && html.contains("class=\"bx-nav-title\""));
+    assert_eq!(
+        html.matches("bx-nav-icon").count(),
+        1,
+        "only the item with an icon gets one"
+    );
+    assert!(html.contains("aria-hidden=\"true\""));
 }

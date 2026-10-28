@@ -7,6 +7,8 @@ use bioxus_design::form_factor::FormFactor;
 pub struct NavItem {
     pub id: String,
     pub label: String,
+    /// Short glyph before the label (an emoji or a letter); decorative, hidden from assistive tech.
+    pub icon: Option<String>,
 }
 
 impl NavItem {
@@ -14,7 +16,14 @@ impl NavItem {
         Self {
             id: id.into(),
             label: label.into(),
+            icon: None,
         }
+    }
+
+    #[must_use]
+    pub fn with_icon(mut self, icon: impl Into<String>) -> Self {
+        self.icon = Some(icon.into());
+        self
     }
 }
 

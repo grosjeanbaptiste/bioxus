@@ -17,6 +17,8 @@
 
 - `bioxus-sync` v0.9.0: `Clock` (HLC stamp = 44-bit ms | 12-bit counter | 8-bit node, so max 256 nodes per account; drift guard 24 h; injected wall clock), `Transport` port with server arrival token (not stamp) as pull cursor, `MemoryTransport` hub, `Engine` (open seeds clock from store; put/delete/sync; pushes only own-node records, no echo; failed sync leaves markers untouched). 14 scenario tests: convergence, concurrent tie-break, late old-stamp push, tombstones, retry, idempotence, poisoned stamp, clock jump back. Facade feature `sync` (opt-in). HTTP transport NOT done: no server contract exists yet (step 5b).
 
+- Version policy (owner 2026-10-28): the project is at 0.0.0. Workspace version set to 0.0.0 locally; tags v0.1.0..v0.9.0 already public and pinned by ss PR#2 and a peer actrack_deck change — keep until the owner decides. Local commit not pushed; push/tag was denied by the permission classifier, awaiting an explicit owner go.
+
 ## Roadmap (owner request 2026-10-28: ready-made designs, optional DB, sync, every design element for web/desktop/tablet/phone; proposed, not started)
 
 Apps import only `bioxus` (the melos_apps `act_root` rule); every block is a feature.

@@ -3,7 +3,7 @@ resolver = "2"
 members = ["packages/*"]
 
 [workspace.package]
-version = "0.9.0"
+version = "0.0.0"
 edition = "2021"
 authors = ["Baptiste Grosjean <grosjeanbaptiste@outlook.com>"]
 license-file = "LICENSE"
