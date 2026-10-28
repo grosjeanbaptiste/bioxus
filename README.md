@@ -28,6 +28,8 @@ Every app has an icon: its own if the repo holds `assets/icon.svg|png` or `icon.
 let out = std::path::PathBuf::from(std::env::var("OUT_DIR")?);
 bioxus::design::icon::emit_png(std::path::Path::new(&std::env::var("CARGO_MANIFEST_DIR")?), &out)?;
 ```
+For iOS, `bioxus::design::icon::ios::emit_set` writes the 13-file `AppIcon.appiconset` (`icon_<n>x<n>.png`, same names `ll` and `actrack` use). `dx bundle` writes no AppIcon entry, so without a set iOS shows a white square; the apps' scripts (`build_appicon.py`, `embed_ios_icons.py`) copy the set into the `.app` and patch `Info.plist`. An app with a master icon but no set gets an error telling it to run `scripts/make-ios-set.sh <master> <dir>`: its own icon is never replaced by the default.
+
 then `dioxus::desktop::icon_from_memory(include_bytes!(concat!(env!("OUT_DIR"), "/app-icon.png")))` for the window, and the same file for bundles. `icon::emit` also keeps an SVG for the web favicon. A provided icon that is corrupt or unreadable fails the build; it never silently becomes the default.
 
 ## Build

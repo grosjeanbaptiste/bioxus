@@ -38,7 +38,7 @@ by git tag.
 ## Conventions
 
 - Keep every possibility open (owner, 2026-10-28): each block is a feature and a separate package; no router, renderer, DB or backend is imposed; behaviour sits behind ports; layout is CSS-driven with an explicit override prop.
-- Every app always has an app icon (owner, 2026-10-28): the repo's own, else the BIOXUS icon (`bioxus::design::icon`). Regenerate the default PNG with `scripts/render-icon.sh`.
+- Every app always has an app icon (owner, 2026-10-28): the repo's own, else the BIOXUS icon (`bioxus::design::icon`). Regenerate the default icons (512 PNG + 13-file iOS set, RGB no alpha) with `scripts/render-icon.sh`; build a set from any master with `scripts/make-ios-set.sh`.
 - One Dioxus version, pinned in the workspace.
 - Crates stay small; no px units; each public widget has a test.
 

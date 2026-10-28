@@ -2,13 +2,25 @@
 //! A provided icon that is unreadable or not a real PNG/SVG is an error, never a silent
 //! fallback to the default.
 
+pub mod ios;
+
 use std::path::{Path, PathBuf};
 
 pub const DEFAULT_SVG: &str = include_str!("../assets/icon.svg");
 pub const DEFAULT_PNG: &[u8] = include_bytes!("../assets/icon.png");
 
 /// Where an app repo may keep its icon, first match wins. SVG before PNG.
-pub const CANDIDATES: [&str; 4] = ["assets/icon.svg", "assets/icon.png", "icon.svg", "icon.png"];
+pub const CANDIDATES: [&str; 8] = [
+    "assets/icon.svg",
+    "assets/icon.png",
+    "icon.svg",
+    "icon.png",
+    "stores/ios/icon.png",
+    // The 1024 of an app's iOS set (ll, actrack conventions) is its icon too.
+    "stores/ios/AppIcon.appiconset/icon_1024x1024.png",
+    "ui/mobile/assets/icons/icon_1024x1024.png",
+    "assets/icons/icon_1024x1024.png",
+];
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Kind {
@@ -31,8 +43,23 @@ pub struct AppIcon {
 
 #[derive(Debug)]
 pub enum IconError {
-    Unreadable { path: PathBuf, reason: String },
-    Invalid { path: PathBuf },
+    Unreadable {
+        path: PathBuf,
+        reason: String,
+    },
+    Invalid {
+        path: PathBuf,
+    },
+    /// An iOS set directory exists but lacks sizes the App Store requires.
+    IncompleteSet {
+        dir: PathBuf,
+        missing: Vec<u32>,
+    },
+    /// The app has a master icon but no iOS set, and a set cannot be derived without a
+    /// resizer: run `scripts/make-ios-set.sh <master> <dir>` from bioxus and commit the result.
+    NoSetForMaster {
+        master: PathBuf,
+    },
 }
 
 impl std::fmt::Display for IconError {
@@ -44,6 +71,14 @@ impl std::fmt::Display for IconError {
             Self::Invalid { path } => {
                 write!(f, "app icon {} is not a valid PNG or SVG", path.display())
             }
+            Self::IncompleteSet { dir, missing } => {
+                write!(f, "iOS icon set {} misses sizes {missing:?}", dir.display())
+            }
+            Self::NoSetForMaster { master } => write!(
+                f,
+                "{} has no iOS icon set; run bioxus scripts/make-ios-set.sh on it",
+                master.display()
+            ),
         }
     }
 }

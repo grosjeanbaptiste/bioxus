@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>BIOXUS (iOS: full-bleed, no alpha; the system rounds the corners)</title>
+  <rect width="512" height="512" fill="#4f6df5"/>
+  <circle cx="256" cy="256" r="92" fill="none" stroke="#ffffff" stroke-width="28"/>
+  <path d="M120 120 L212 212 M300 300 L392 392 M392 120 L300 212 M212 300 L120 392" stroke="#ffffff" stroke-width="40" stroke-linecap="round" fill="none"/>
+</svg>
