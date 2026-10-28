@@ -19,11 +19,13 @@
 
 - Version policy (owner 2026-10-28): the project is at 0.0.0. Workspace version set to 0.0.0 locally; tags v0.1.0..v0.9.0 already public and pinned by ss PR#2 and a peer actrack_deck change — keep until the owner decides. Local commit not pushed; push/tag was denied by the permission classifier, awaiting an explicit owner go.
 
+- `bioxus-store` IndexedDB adapter (feature `indexeddb`, wasm32 only, `idb` crate): stamp stored as 20-digit string (JS numbers hold 53 bits), `stamp` index drives `changes_since`, put = one readwrite transaction. Compiles and passes clippy `-D warnings` on wasm32 (`make wasm-check`, part of ci-local). **Its browser tests (`tests/indexeddb.rs`: shared contract + >2^53 stamps) have NOT been run**: `make wasm-test` needs chromedriver and the sandbox could not resolve storage.googleapis.com (DNS). Run `make wasm-test` on a networked shell before trusting it.
+
 ## Roadmap (owner request 2026-10-28: ready-made designs, optional DB, sync, every design element for web/desktop/tablet/phone; proposed, not started)
 
 Apps import only `bioxus` (the melos_apps `act_root` rule); every block is a feature.
 - `bioxus-widgets` — AppShell, Badge, InputField (text/number/date, native types), Table, Dialog (native <dialog>, Esc via oncancel), Stat done (v0.5.0). Lists skipped (Table covers it; add on demand). Charts are in bioxus-charts.
-- `bioxus-store` — port, memory and sqlite done; `indexeddb` adapter (web/wasm) still to do.
+- `bioxus-store` — port, memory and sqlite done; `indexeddb` adapter written, browser test pending.
 - `bioxus-sync` — engine, clock and in-process transport done; HTTP and p2p transports to do once a server contract exists.
 Open choice: web storage backend (IndexedDB vs sqlite-wasm) before bioxus-store starts.
 - Not ported from melos_apps: coverage floors, lint ceilings, test-impacted, pre-commit gate.

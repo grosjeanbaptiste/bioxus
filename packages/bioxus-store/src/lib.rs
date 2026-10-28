@@ -5,6 +5,8 @@
 
 pub mod contract;
 pub mod error;
+#[cfg(all(feature = "indexeddb", target_arch = "wasm32"))]
+pub mod indexeddb;
 pub mod memory;
 pub mod record;
 #[cfg(feature = "sqlite")]
@@ -13,6 +15,8 @@ pub mod sqlite;
 use std::future::Future;
 
 pub use error::StoreError;
+#[cfg(all(feature = "indexeddb", target_arch = "wasm32"))]
+pub use indexeddb::IndexedDbStore;
 pub use memory::MemoryStore;
 pub use record::Record;
 #[cfg(feature = "sqlite")]
