@@ -29,7 +29,9 @@ by git tag.
 |---|---|
 | `bioxus` | Facade apps import: `bioxus::design`, later `::widgets`, `::locale` |
 | `bioxus-design` | Design system: tokens, constants, shared CSS (`act_design`) |
-| `bioxus-widgets` | Reusable widgets (`act_widgets`), planned |
+| `bioxus-widgets` | Responsive shell and widgets (`act_widgets`), planned |
+| `bioxus-store` | Optional DB behind a `Store` port (`act_storage`), planned |
+| `bioxus-sync` | Outbox/inbox sync (`act_acteble`, `act_p2p`), planned |
 | `bioxus-locale` | i18n (`act_locale`), planned |
 
 ## Conventions
