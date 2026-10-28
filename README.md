@@ -7,7 +7,7 @@ Layout and gates follow the `melos_apps` monorepo model: role-named packages und
 ## Use
 
 ```toml
-bioxus = { git = "https://github.com/grosjeanbaptiste/bioxus", tag = "v0.3.0" }
+bioxus = { git = "https://github.com/grosjeanbaptiste/bioxus", tag = "v0.4.0" }
 ```
 
 ```rust
@@ -18,6 +18,8 @@ Ready-made themes: set `data-theme="ocean|forest|sunset"` on the root element. `
 
 An app overrides a token by redefining it after the stylesheet. Tokens: `bg surface fg muted dim border accent warn danger`, `rem` units only.
 
+Pick only what you need: `bioxus = { …, default-features = false, features = ["design"] }`. Inject `bioxus::widgets::STYLESHEET` after the design one.
+
 ## Build
 
 `make ci-local`
@@ -27,4 +29,5 @@ An app overrides a token by redefining it after the stylesheet. Tokens: `bg surf
 | Package | Role |
 |---|---|
 | `bioxus` | The crate apps import; one module per block, each behind a feature |
+| `bioxus-widgets` | `AppShell` (bottom bar on phones, rail on tablets, sidebar on desktops, forced with `layout`), `Badge` → `bioxus::widgets` |
 | `bioxus-design` | Tokens, reset, shared CSS (light and dark) → `bioxus::design` |
