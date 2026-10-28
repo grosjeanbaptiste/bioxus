@@ -1,0 +1,18 @@
+[package]
+name = "bioxus-charts"
+description = "Proportional bar charts for Dioxus apps, driven by design tokens"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license-file = "../../LICENSE"
+
+[dependencies]
+dioxus.workspace = true
+bioxus-widgets = { path = "../bioxus-widgets" }
+
+[dev-dependencies]
+dioxus-ssr = "0.7"
+bioxus-design = { path = "../bioxus-design" }
+
+[lints]
+workspace = true

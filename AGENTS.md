@@ -28,6 +28,7 @@ by git tag.
 | Package | Role (melos_apps twin) |
 |---|---|
 | `bioxus` | Facade apps import: `bioxus::design`, later `::widgets`, `::locale` |
+| `bioxus-charts` | Bar charts, pure geometry → `bioxus::charts` |
 | `bioxus-design` | Design system: tokens, constants, shared CSS (`act_design`) |
 | `bioxus-widgets` | Responsive `AppShell` (bottom bar / rail / sidebar by CSS), `Badge` (`act_widgets`) → `bioxus::widgets` |
 | `bioxus-store` | Optional DB behind a `Store` port (`act_storage`), planned |

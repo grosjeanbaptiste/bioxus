@@ -13,6 +13,17 @@ pub enum Tone {
 }
 
 impl Tone {
+    /// Extra class naming the tone; empty for the neutral one.
+    #[must_use]
+    pub const fn modifier(self) -> &'static str {
+        match self {
+            Self::Neutral => "",
+            Self::Ok => "bx-ok",
+            Self::Warn => "bx-warn",
+            Self::Danger => "bx-danger",
+        }
+    }
+
     #[must_use]
     pub const fn class(self) -> &'static str {
         match self {

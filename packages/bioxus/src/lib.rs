@@ -9,6 +9,10 @@ pub use bioxus_design as design;
 #[cfg(feature = "widgets")]
 pub use bioxus_widgets as widgets;
 
+/// Proportional bar charts.
+#[cfg(feature = "charts")]
+pub use bioxus_charts as charts;
+
 #[cfg(all(test, feature = "design"))]
 mod tests {
     #[test]
@@ -21,5 +25,11 @@ mod tests {
     #[test]
     fn exposes_the_widgets() {
         assert!(super::widgets::STYLESHEET.contains(".bx-shell"));
+    }
+
+    #[cfg(feature = "charts")]
+    #[test]
+    fn exposes_the_charts() {
+        assert!(super::charts::STYLESHEET.contains(".bx-bars"));
     }
 }

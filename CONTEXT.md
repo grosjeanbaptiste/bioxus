@@ -9,10 +9,12 @@
 
 - `bioxus-widgets` v0.4.0: `AppShell` (CSS media-query layout, `layout` prop forces one, no JS/router), `Badge`/`Tone`, `NavItem`/`NavLayout`; SSR tests (dioxus-ssr) + token/px test. Facade features: design, widgets (default both).
 
+- `bioxus-charts` v0.6.0: `BarChart`/`Bar` (tone from widgets::Tone), pure `scale::fill/max_of` (NaN, negative, zero max, clamp tested). Replaces ss graph bars, actrack Bars. The collapsible tree of ss ResourceGraph stays app-side (needs ss domain types).
+
 ## Roadmap (owner request 2026-10-28: ready-made designs, optional DB, sync, every design element for web/desktop/tablet/phone; proposed, not started)
 
 Apps import only `bioxus` (the melos_apps `act_root` rule); every block is a feature.
-- `bioxus-widgets` — AppShell, Badge, InputField (text/number/date, native types), Table, Dialog (native <dialog>, Esc via oncancel), Stat done (v0.5.0). Lists skipped (Table covers it; add on demand). Charts go to bioxus-charts.
+- `bioxus-widgets` — AppShell, Badge, InputField (text/number/date, native types), Table, Dialog (native <dialog>, Esc via oncancel), Stat done (v0.5.0). Lists skipped (Table covers it; add on demand). Charts are in bioxus-charts.
 - `bioxus-store` (feature `store`, optional) — hexagonal `Store` port; adapters behind features: `sqlite` (rusqlite, desktop/mobile), `indexeddb` (web/wasm).
 - `bioxus-sync` (feature `sync`, needs `store`) — outbox/inbox pipeline like act_acteble, last-write-wins on a hybrid logical clock, `Transport` port (HTTP first, p2p later like act_p2p).
 - `bioxus-locale` — i18n.
