@@ -37,11 +37,13 @@ Open choice: web storage backend (IndexedDB vs sqlite-wasm) before bioxus-store 
 
 ## Decisions
 
-- 2026-10-28 — consumers are Converge, ss, actrack_deck only; apps stay in their repos and consume by git tag (owner).
+- 2026-10-28 — ll added as a consumer (owner). Earlier: consumers are Converge, ss, actrack_deck only; apps stay in their repos and consume by git tag (owner).
 - 2026-10-28 — renamed dioxus-kit to bioxus and made public with a clean history, because the first history tracked target/ (owner asked for public + the name).
 - Token vocabulary: bg surface fg muted dim border accent warn danger; ss renamed --error->--danger, --pre-bg->--surface; actrack will rename --fg-muted->--muted, --fg-dim->--dim.
 - Emvi apps are out of scope (formal prohibition).
 
 ## Consumers
+
+- ll (owner 2026-10-28: LL reuses bioxus as much as possible): ll_app `ll-ui` pins `bioxus` by rev, feature `design` only; takes tokens + forced scheme (`data-scheme`, added for LL's own light/dark setting), keeps its accent. Next: locale, AppShell/widgets, icon.
 
 - ss: PR #2 on grosjeanbaptiste/ss (stacked on #1), switching to `bioxus` (bioxus::design). Converge, actrack_deck: not started.
