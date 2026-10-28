@@ -33,7 +33,7 @@ by git tag.
 | `bioxus-widgets` | Responsive `AppShell` (bottom bar / rail / sidebar by CSS), `Badge` (`[private package]`) → `bioxus::widgets` |
 | `bioxus-store` | Optional DB behind a `Store` port (`[private package]`), planned |
 | `bioxus-sync` | Outbox/inbox sync (`[private package]`, `[private package]`), planned |
-| `bioxus-locale` | i18n (`[private package]`), planned |
+| `bioxus-locale` | i18n, open locale tags (`[private package]`) → `bioxus::locale` |
 
 ## Conventions
 

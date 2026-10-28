@@ -13,6 +13,10 @@ pub use bioxus_widgets as widgets;
 #[cfg(feature = "charts")]
 pub use bioxus_charts as charts;
 
+/// Open-ended i18n.
+#[cfg(feature = "locale")]
+pub use bioxus_locale as locale;
+
 #[cfg(all(test, feature = "design"))]
 mod tests {
     #[test]
@@ -31,5 +35,11 @@ mod tests {
     #[test]
     fn exposes_the_charts() {
         assert!(super::charts::STYLESHEET.contains(".bx-bars"));
+    }
+
+    #[cfg(feature = "locale")]
+    #[test]
+    fn exposes_the_locale_api() {
+        assert_eq!(super::locale::Locale::new("FR").unwrap().as_str(), "fr");
     }
 }
