@@ -27,11 +27,11 @@ by git tag.
 
 | Package | Role (melos_apps twin) |
 |---|---|
-| `bioxus` | Facade apps import: `bioxus::design`, later `::widgets`, `::locale` |
+| `bioxus` | Facade apps import: `bioxus::{design,widgets,charts,locale,store}` |
 | `bioxus-charts` | Bar charts, pure geometry → `bioxus::charts` |
 | `bioxus-design` | Design system: tokens, constants, shared CSS (`act_design`) |
 | `bioxus-widgets` | Responsive `AppShell` (bottom bar / rail / sidebar by CSS), `Badge` (`act_widgets`) → `bioxus::widgets` |
-| `bioxus-store` | Optional DB behind a `Store` port (`act_storage`), planned |
+| `bioxus-store` | Optional DB behind a `Store` port (`act_storage`) → `bioxus::store` |
 | `bioxus-sync` | Outbox/inbox sync (`act_acteble`, `act_p2p`), planned |
 | `bioxus-locale` | i18n, open locale tags (`act_locale`) → `bioxus::locale` |
 

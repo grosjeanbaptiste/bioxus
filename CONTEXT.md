@@ -13,11 +13,13 @@
 
 - `bioxus-locale` v0.7.0: open `Locale` tags (chain fr-be -> fr -> fallback), `Catalog` (pairs/JSON flat+nested, key-by-key merge), `Translator` (missing key = visible key + handler, default stderr warn), `{name}` interpolation with `{{ }}` escapes. No UI dep; JSON behind feature `json`. ll-ui keeps its own typed `Strings` struct for now (migration only if the owner wants ll in scope).
 
+- `bioxus-store` v0.8.0: async `Store` port (get/put/list/changes_since; opaque string value, caller `stamp`, tombstones; older stamp ignored, equal replaces), `MemoryStore`, `SqliteStore` (feature `sqlite`, rusqlite bundled, stamp > i64::MAX is an error), shared `contract::check` + `block_on` for any adapter. Facade features `store`, `store-sqlite` (opt-in, not default). Gates now run with --all-features. IndexedDB adapter: NOT done (step 4b, needs wasm32 + web-sys; wasm32-unknown-unknown target is installed).
+
 ## Roadmap (owner request 2026-10-28: ready-made designs, optional DB, sync, every design element for web/desktop/tablet/phone; proposed, not started)
 
 Apps import only `bioxus` (the melos_apps `act_root` rule); every block is a feature.
 - `bioxus-widgets` — AppShell, Badge, InputField (text/number/date, native types), Table, Dialog (native <dialog>, Esc via oncancel), Stat done (v0.5.0). Lists skipped (Table covers it; add on demand). Charts are in bioxus-charts.
-- `bioxus-store` (feature `store`, optional) — hexagonal `Store` port; adapters behind features: `sqlite` (rusqlite, desktop/mobile), `indexeddb` (web/wasm).
+- `bioxus-store` — port, memory and sqlite done; `indexeddb` adapter (web/wasm) still to do.
 - `bioxus-sync` (feature `sync`, needs `store`) — outbox/inbox pipeline like act_acteble, last-write-wins on a hybrid logical clock, `Transport` port (HTTP first, p2p later like act_p2p).
 Open choice: web storage backend (IndexedDB vs sqlite-wasm) before bioxus-store starts.
 - Not ported from melos_apps: coverage floors, lint ceilings, test-impacted, pre-commit gate.

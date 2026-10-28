@@ -17,6 +17,10 @@ pub use bioxus_charts as charts;
 #[cfg(feature = "locale")]
 pub use bioxus_locale as locale;
 
+/// Local storage port and adapters.
+#[cfg(feature = "store")]
+pub use bioxus_store as store;
+
 #[cfg(all(test, feature = "design"))]
 mod tests {
     #[test]
@@ -41,5 +45,12 @@ mod tests {
     #[test]
     fn exposes_the_locale_api() {
         assert_eq!(super::locale::Locale::new("FR").unwrap().as_str(), "fr");
+    }
+
+    #[cfg(feature = "store")]
+    #[test]
+    fn exposes_the_store_port() {
+        let store = super::store::MemoryStore::default();
+        super::store::contract::block_on(super::store::contract::check(&store));
     }
 }
