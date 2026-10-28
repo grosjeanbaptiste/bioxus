@@ -20,6 +20,16 @@ An app overrides a token by redefining it after the stylesheet. Tokens: `bg surf
 
 Pick only what you need: `bioxus = { …, default-features = false, features = ["design"] }`. Inject `bioxus::widgets::STYLESHEET` after the design one.
 
+## App icon
+
+Every app has an icon: its own if the repo holds `assets/icon.svg|png` or `icon.svg|png`, else the BIOXUS icon. In the app's `build.rs`:
+
+```rust
+let out = std::path::PathBuf::from(std::env::var("OUT_DIR")?);
+bioxus::design::icon::emit_png(std::path::Path::new(&std::env::var("CARGO_MANIFEST_DIR")?), &out)?;
+```
+then `dioxus::desktop::icon_from_memory(include_bytes!(concat!(env!("OUT_DIR"), "/app-icon.png")))` for the window, and the same file for bundles. `icon::emit` also keeps an SVG for the web favicon. A provided icon that is corrupt or unreadable fails the build; it never silently becomes the default.
+
 ## Build
 
 `make ci-local`
