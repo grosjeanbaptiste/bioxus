@@ -3,6 +3,7 @@
 ## Current state
 
 - Workspace with `bioxus-design` (tokens + reset, rem only, light/dark), 4 tests; Dioxus pinned 0.7 in `Cargo.toml`. Source: `packages/bioxus-design`.
+- `bioxus` (packages/bioxus) is the facade apps import (owner, 2026-10-28): `bioxus::design` behind feature `design`; new blocks are added as sub-packages re-exported there. Tag v0.2.0.
 - Layout follows melos_apps: `packages/`, root Makefile gates (`make ci-local`).
 - Planned: bioxus-locale, bioxus-widgets, bioxus-charts, bioxus-shell (not started).
 - Not ported from melos_apps: coverage floors, lint ceilings, test-impacted, pre-commit gate.
@@ -16,4 +17,4 @@
 
 ## Consumers
 
-- ss: PR #2 on grosjeanbaptiste/ss (stacked on #1), switching to bioxus-design. Converge, actrack_deck: not started.
+- ss: PR #2 on grosjeanbaptiste/ss (stacked on #1), switching to `bioxus` (bioxus::design). Converge, actrack_deck: not started.

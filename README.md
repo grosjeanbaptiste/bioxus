@@ -7,11 +7,11 @@ Layout and gates follow the `melos_apps` monorepo model: role-named packages und
 ## Use
 
 ```toml
-bioxus-design = { git = "https://github.com/grosjeanbaptiste/bioxus", tag = "v0.1.0" }
+bioxus = { git = "https://github.com/grosjeanbaptiste/bioxus", tag = "v0.2.0" }
 ```
 
 ```rust
-rsx! { style { {bioxus_design::STYLESHEET} } }
+rsx! { style { {bioxus::design::STYLESHEET} } }
 ```
 
 An app overrides a token by redefining it after the stylesheet. Tokens: `bg surface fg muted dim border accent warn danger`, `rem` units only.
@@ -24,4 +24,5 @@ An app overrides a token by redefining it after the stylesheet. Tokens: `bg surf
 
 | Package | Role |
 |---|---|
-| `bioxus-design` | Tokens, reset, shared CSS (light and dark) |
+| `bioxus` | The crate apps import; one module per block, each behind a feature |
+| `bioxus-design` | Tokens, reset, shared CSS (light and dark) → `bioxus::design` |

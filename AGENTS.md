@@ -27,6 +27,7 @@ by git tag.
 
 | Package | Role (melos_apps twin) |
 |---|---|
+| `bioxus` | Facade apps import: `bioxus::design`, later `::widgets`, `::locale` |
 | `bioxus-design` | Design system: tokens, constants, shared CSS (`act_design`) |
 | `bioxus-widgets` | Reusable widgets (`act_widgets`), planned |
 | `bioxus-locale` | i18n (`act_locale`), planned |

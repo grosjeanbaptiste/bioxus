@@ -3,5 +3,12 @@
 version = 4
 
 [[package]]
+name = "bioxus"
+version = "0.1.0"
+dependencies = [
+ "bioxus-design",
+]
+
+[[package]]
 name = "bioxus-design"
 version = "0.1.0"

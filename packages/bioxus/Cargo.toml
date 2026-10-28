@@ -1,0 +1,17 @@
+[package]
+name = "bioxus"
+description = "Build blocks for Dioxus apps: one dependency, one module per building block"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license-file = "../../LICENSE"
+
+[dependencies]
+bioxus-design = { path = "../bioxus-design", optional = true }
+
+[features]
+default = ["design"]
+design = ["dep:bioxus-design"]
+
+[lints]
+workspace = true
