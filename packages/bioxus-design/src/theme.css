@@ -28,3 +28,7 @@
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); -webkit-font-smoothing: antialiased; }
+
+:root { --gutter: 0.75rem; --columns: 1; }
+@media (min-width: 40rem) { :root { --gutter: 1rem; --columns: 2; } }
+@media (min-width: 64rem) { :root { --gutter: 1.5rem; --columns: 3; } }
