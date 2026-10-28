@@ -35,6 +35,8 @@ Apps import only `bioxus` (the melos_apps `act_root` rule); every block is a fea
 Open choice: web storage backend (IndexedDB vs sqlite-wasm) before bioxus-store starts.
 - Not ported from melos_apps: coverage floors, lint ceilings, test-impacted, pre-commit gate.
 
+- `bioxus-viewer3d` (owner request 2026-10-28, from Converge's standalone Three.js page): `page(title, &[Part])` builds a standalone HTML page (glb embedded as base64, Three.js 0.170.0 from jsDelivr, title and part names escaped), feature `component` adds `Viewer3d` (the page in an `<iframe srcdoc>`, so no JS glue on any renderer). Facade features `viewer3d` (page only, no Dioxus) and `viewer3d-ui` (default). 8 tests written, NOT run (clippy -D warnings passes with and without the component). Needs network at view time (Three.js from the CDN). Converge consumes it by git `rev`, no tag cut (version policy above is the owner's).
+
 ## Decisions
 
 - 2026-10-28 — ll added as a consumer (owner). Earlier: consumers are Converge, ss, actrack_deck only; apps stay in their repos and consume by git tag (owner).

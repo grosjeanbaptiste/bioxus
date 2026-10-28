@@ -25,6 +25,10 @@ pub use bioxus_store as store;
 #[cfg(feature = "sync")]
 pub use bioxus_sync as sync;
 
+/// 3D viewer for glTF binaries.
+#[cfg(feature = "viewer3d")]
+pub use bioxus_viewer3d as viewer3d;
+
 #[cfg(all(test, feature = "design"))]
 mod tests {
     #[test]
@@ -63,5 +67,11 @@ mod tests {
     fn exposes_the_sync_engine() {
         let stamp = super::sync::Clock::new(3).tick(1).unwrap();
         assert_eq!(super::sync::clock::node_of(stamp), 3);
+    }
+
+    #[cfg(feature = "viewer3d")]
+    #[test]
+    fn exposes_the_viewer() {
+        assert!(super::viewer3d::page("t", &[]).contains("three@"));
     }
 }
