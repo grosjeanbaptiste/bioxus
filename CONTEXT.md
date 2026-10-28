@@ -23,6 +23,9 @@
 
 - App icon rule (owner 2026-10-28): every app has an icon, the repo's own else BIOXUS's. Done in `bioxus-design::icon`: default SVG+PNG (512) embedded, `resolve`, `resolve_png`, `emit`, `emit_png` for build.rs; corrupt/unreadable provided icon = error. 7 tests. Inspired by ll and actrack (checked 2026-10-28): both keep an iOS set `icon_<n>x<n>.png` (13 sizes) in `stores/ios/AppIcon.appiconset` (ll) / `ui/mobile/assets/icons` (actrack) and each has its own Python script to embed it in the .app (`dx bundle` writes no AppIcon entry) — duplicated, candidates to absorb into bioxus later. `icon::ios` reads those exact locations + names; `resolve*` also treat a set's 1024 as the app icon. Run against the real repos: ll = provided master + 13-file set; actrack = provided set (its icons have an ALPHA channel, which the App Store rejects: not fixed, not mine to change); ss and Converge = BIOXUS default. NOT yet wired into any app: ss (PR #2) needs a published tag containing this; Converge and actrack_deck are being migrated by peer sessions.
 
+- 2026-10-28 — other Claude sessions commit straight into this checkout (e.g. 6ceed9b "forced scheme, ok and on-accent tokens", made while I worked); my push of main published it with mine. Check `git log` before assuming a commit is yours.
+- Icons beyond iOS (decided, not built): web favicon uses the master SVG/PNG (`icon::emit`/`emit_png`), Android launcher sizes derive from the master with the platform tooling; ll and actrack keep no web or Android icon convention to follow, so no extra sets were invented.
+
 ## Roadmap (owner request 2026-10-28: ready-made designs, optional DB, sync, every design element for web/desktop/tablet/phone; proposed, not started)
 
 Apps import only `bioxus` (the melos_apps `act_root` rule); every block is a feature.
