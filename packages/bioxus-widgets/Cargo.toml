@@ -1,0 +1,17 @@
+[package]
+name = "bioxus-widgets"
+description = "Responsive app shell and reusable Dioxus widgets, renderer-agnostic"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license-file = "../../LICENSE"
+
+[dependencies]
+dioxus.workspace = true
+bioxus-design = { path = "../bioxus-design" }
+
+[dev-dependencies]
+dioxus-ssr = "0.7"
+
+[lints]
+workspace = true

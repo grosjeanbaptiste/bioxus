@@ -29,13 +29,14 @@ by git tag.
 |---|---|
 | `bioxus` | Facade apps import: `bioxus::design`, later `::widgets`, `::locale` |
 | `bioxus-design` | Design system: tokens, constants, shared CSS (`[private package]`) |
-| `bioxus-widgets` | Responsive shell and widgets (`[private package]`), planned |
+| `bioxus-widgets` | Responsive `AppShell` (bottom bar / rail / sidebar by CSS), `Badge` (`[private package]`) → `bioxus::widgets` |
 | `bioxus-store` | Optional DB behind a `Store` port (`[private package]`), planned |
 | `bioxus-sync` | Outbox/inbox sync (`[private package]`, `[private package]`), planned |
 | `bioxus-locale` | i18n (`[private package]`), planned |
 
 ## Conventions
 
+- Keep every possibility open (owner, 2026-10-28): each block is a feature and a separate package; no router, renderer, DB or backend is imposed; behaviour sits behind ports; layout is CSS-driven with an explicit override prop.
 - One Dioxus version, pinned in the workspace.
 - Crates stay small; no px units; each public widget has a test.
 
