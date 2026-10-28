@@ -62,3 +62,61 @@ fn styles_use_only_design_tokens_and_no_px() {
     }
     assert!(!STYLESHEET.contains("px"));
 }
+
+#[component]
+fn Forms(error: Option<String>, open: bool) -> Element {
+    rsx! {
+        InputField { label: "Amount", value: "12", on_input: |_| {}, kind: InputKind::Number, error }
+        Table { columns: vec!["A".into(), "B".into()], rows: vec![vec!["1".into(), "2".into()], vec!["3".into(), "4".into()]] }
+        Dialog { open, title: "Sure?", on_close: |_| {}, "body" }
+        Stat { label: "Total", value: "42" }
+    }
+}
+
+fn render_forms(error: Option<&str>, open: bool) -> String {
+    let props = FormsProps {
+        error: error.map(Into::into),
+        open,
+    };
+    let mut dom = VirtualDom::new_with_props(Forms, props);
+    dom.rebuild_in_place();
+    dioxus_ssr::render(&dom)
+}
+
+#[test]
+fn input_uses_the_native_type_and_value() {
+    let html = render_forms(None, false);
+    assert!(html.contains("type=\"number\"") && html.contains("value=\"12\""));
+    assert!(!html.contains("aria-invalid") && !html.contains("bx-error"));
+}
+
+#[test]
+fn an_error_marks_the_input_invalid_and_is_announced() {
+    let html = render_forms(Some("too big"), false);
+    assert!(
+        html.contains("aria-invalid=\"true\"")
+            && html.contains("role=\"alert\"")
+            && html.contains("too big")
+    );
+}
+
+#[test]
+fn table_renders_headers_and_every_cell() {
+    let html = render_forms(None, false);
+    assert_eq!(html.matches("<th ").count(), 2);
+    assert_eq!(html.matches("<td>").count(), 4);
+}
+
+#[test]
+fn dialog_is_open_only_when_asked() {
+    assert!(render_forms(None, true).contains("<dialog class=\"bx-dialog\" open"));
+    assert!(!render_forms(None, false).contains("<dialog class=\"bx-dialog\" open"));
+}
+
+#[test]
+fn input_kinds_map_to_native_types() {
+    assert_eq!(
+        [InputKind::Text, InputKind::Number, InputKind::Date].map(InputKind::as_str),
+        ["text", "number", "date"]
+    );
+}

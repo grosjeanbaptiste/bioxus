@@ -2,12 +2,20 @@
 //! no storage. Colours and spacing come from `bioxus-design` tokens only.
 
 pub mod badge;
+pub mod dialog;
+pub mod field;
 pub mod nav;
 pub mod shell;
+pub mod stat;
+pub mod table;
 
 pub use badge::{Badge, Tone};
+pub use dialog::Dialog;
+pub use field::{InputField, InputKind};
 pub use nav::{NavItem, NavLayout};
 pub use shell::AppShell;
+pub use stat::Stat;
+pub use table::Table;
 
 /// Stylesheet of the widgets; inject after `bioxus_design::STYLESHEET`.
 pub const STYLESHEET: &str = include_str!("widgets.css");

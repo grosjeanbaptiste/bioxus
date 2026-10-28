@@ -21,3 +21,17 @@
 .bx-badge.bx-ok { border-color: var(--accent); color: var(--accent); }
 .bx-badge.bx-warn { border-color: var(--warn); color: var(--warn); }
 .bx-badge.bx-danger { border-color: var(--danger); color: var(--danger); }
+
+.bx-field { display: flex; flex-direction: column; gap: 0.25rem; }
+.bx-label { color: var(--muted); font-size: 0.75rem; }
+.bx-field input { padding: 0.5rem; border: 0.0625rem solid var(--border); border-radius: 0.375rem; background: var(--surface); color: var(--fg); font: inherit; }
+.bx-field input[aria-invalid="true"] { border-color: var(--danger); }
+.bx-error { color: var(--danger); font-size: 0.75rem; }
+.bx-table-wrap { overflow-x: auto; }
+.bx-table { width: 100%; border-collapse: collapse; }
+.bx-table th, .bx-table td { padding: 0.5rem; text-align: left; border-bottom: 0.0625rem solid var(--border); }
+.bx-table th { color: var(--muted); font-size: 0.75rem; font-weight: 600; }
+.bx-dialog { max-width: min(90vw, 32rem); padding: var(--gutter); border: 0.0625rem solid var(--border); border-radius: 0.5rem; background: var(--surface); color: var(--fg); }
+.bx-dialog::backdrop { background: rgba(0, 0, 0, 0.5); }
+.bx-stat { display: flex; flex-direction: column; gap: 0.125rem; }
+.bx-stat strong { font-size: 1.25rem; }

@@ -7,7 +7,7 @@ Layout and gates follow the `melos_apps` monorepo model: role-named packages und
 ## Use
 
 ```toml
-bioxus = { git = "https://github.com/grosjeanbaptiste/bioxus", tag = "v0.4.0" }
+bioxus = { git = "https://github.com/grosjeanbaptiste/bioxus", tag = "v0.5.0" }
 ```
 
 ```rust
@@ -29,5 +29,5 @@ Pick only what you need: `bioxus = { …, default-features = false, features = [
 | Package | Role |
 |---|---|
 | `bioxus` | The crate apps import; one module per block, each behind a feature |
-| `bioxus-widgets` | `AppShell` (bottom bar on phones, rail on tablets, sidebar on desktops, forced with `layout`), `Badge` → `bioxus::widgets` |
+| `bioxus-widgets` | `AppShell` (bottom bar on phones, rail on tablets, sidebar on desktops, forced with `layout`), `Badge`, `InputField`, `Table`, `Dialog`, `Stat` → `bioxus::widgets` |
 | `bioxus-design` | Tokens, reset, shared CSS (light and dark) → `bioxus::design` |
