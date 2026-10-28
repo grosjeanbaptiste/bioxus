@@ -13,9 +13,10 @@ bioxus-charts = { path = "../bioxus-charts", optional = true }
 bioxus-store = { path = "../bioxus-store", optional = true }
 bioxus-sync = { path = "../bioxus-sync", optional = true }
 bioxus-locale = { path = "../bioxus-locale", optional = true, default-features = false }
+bioxus-viewer3d = { path = "../bioxus-viewer3d", optional = true, default-features = false }
 
 [features]
-default = ["design", "widgets", "charts", "locale", "locale-json"]
+default = ["design", "widgets", "charts", "locale", "locale-json", "viewer3d-ui"]
 design = ["dep:bioxus-design"]
 widgets = ["design", "dep:bioxus-widgets"]
 charts = ["widgets", "dep:bioxus-charts"]
@@ -25,6 +26,9 @@ store = ["dep:bioxus-store"]
 store-sqlite = ["store", "bioxus-store/sqlite"]
 # Offline-first sync on any Store (opt-in; brings the store port).
 sync = ["store", "dep:bioxus-sync"]
+# 3D viewer: `viewer3d` is the page builder alone, `viewer3d-ui` adds the Dioxus component.
+viewer3d = ["dep:bioxus-viewer3d"]
+viewer3d-ui = ["viewer3d", "design", "bioxus-viewer3d/component"]
 # JSON catalogs for bioxus::locale
 locale-json = ["locale", "bioxus-locale/json"]
 
