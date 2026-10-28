@@ -7,7 +7,7 @@ Layout and gates follow the `the Flutter monorepo` monorepo model: role-named pa
 ## Use
 
 ```toml
-bioxus = { git = "https://github.com/grosjeanbaptiste/bioxus", tag = "v0.9.0" }
+bioxus = { git = "https://github.com/grosjeanbaptiste/bioxus", tag = "v0.0.0" }
 ```
 
 ```rust

@@ -35,3 +35,11 @@
 .bx-dialog::backdrop { background: rgba(0, 0, 0, 0.5); }
 .bx-stat { display: flex; flex-direction: column; gap: 0.125rem; }
 .bx-stat strong { font-size: 1.25rem; }
+
+.bx-nav-title { display: none; margin: 0.25rem 0.5rem 0.75rem; font-weight: 700; }
+.bx-nav-item { display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+.bx-nav-icon { width: 1.25rem; text-align: center; flex: none; }
+@media (min-width: 64rem) { .bx-nav-title { display: block; } .bx-nav-item { justify-content: flex-start; } }
+.bx-shell[data-layout="sidebar"] .bx-nav-title { display: block; }
+.bx-shell[data-layout="sidebar"] .bx-nav-item { justify-content: flex-start; }
+.bx-shell[data-layout="bottom"] .bx-nav-title, .bx-shell[data-layout="rail"] .bx-nav-title { display: none; }
