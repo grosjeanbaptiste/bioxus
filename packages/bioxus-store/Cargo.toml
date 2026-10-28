@@ -9,10 +9,20 @@ license-file = "../../LICENSE"
 [dependencies]
 rusqlite = { version = "0.32", features = ["bundled"], optional = true }
 
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+idb = { version = "0.6", optional = true }
+js-sys = { version = "0.3", optional = true }
+wasm-bindgen = { version = "0.2", optional = true }
+
+[target.'cfg(target_arch = "wasm32")'.dev-dependencies]
+wasm-bindgen-test = "0.3"
+
 [features]
 default = []
 # Native (desktop, mobile) adapter.
 sqlite = ["dep:rusqlite"]
+# Browser adapter (IndexedDB); compiled for wasm32 only.
+indexeddb = ["dep:idb", "dep:js-sys", "dep:wasm-bindgen"]
 
 [lints]
 workspace = true
