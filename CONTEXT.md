@@ -21,6 +21,8 @@
 
 - `bioxus-store` IndexedDB adapter (feature `indexeddb`, wasm32 only, `idb` crate): stamp stored as 20-digit string (JS numbers hold 53 bits), `stamp` index drives `changes_since`, put = one readwrite transaction. Compiles and passes clippy `-D warnings` on wasm32 (`make wasm-check`, part of ci-local). **Its browser tests (`tests/indexeddb.rs`: shared contract + >2^53 stamps) have NOT been run**: `make wasm-test` needs chromedriver and the sandbox could not resolve storage.googleapis.com (DNS). Run `make wasm-test` on a networked shell before trusting it.
 
+- App icon rule (owner 2026-10-28): every app has an icon, the repo's own else BIOXUS's. Done in `bioxus-design::icon`: default SVG+PNG (512) embedded, `resolve`, `resolve_png`, `emit`, `emit_png` for build.rs; corrupt/unreadable provided icon = error. 7 tests. NOT yet wired into any app: ss (PR #2) needs a published tag containing this; Converge and actrack_deck are being migrated by peer sessions.
+
 ## Roadmap (owner request 2026-10-28: ready-made designs, optional DB, sync, every design element for web/desktop/tablet/phone; proposed, not started)
 
 Apps import only `bioxus` (the melos_apps `act_root` rule); every block is a feature.

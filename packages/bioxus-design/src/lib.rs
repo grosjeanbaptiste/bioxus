@@ -2,6 +2,7 @@
 //! Ready-made themes ([`THEMES`]) and form factors ([`form_factor`]). Units are `rem` only. An app overrides a token by redefining it after [`STYLESHEET`].
 
 pub mod form_factor;
+pub mod icon;
 
 /// The shared stylesheet, to inject once at the app root.
 pub const STYLESHEET: &str = concat!(include_str!("theme.css"), include_str!("themes.css"));
