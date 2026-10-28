@@ -46,6 +46,6 @@ Open choice: web storage backend (IndexedDB vs sqlite-wasm) before bioxus-store 
 
 ## Consumers
 
-- ll (owner 2026-10-28: LL reuses bioxus as much as possible): ll_app `ll-ui` pins `bioxus` by rev, feature `design` only; takes tokens + forced scheme (`data-scheme`, added for LL's own light/dark setting), keeps its accent. Next: locale, AppShell/widgets, icon.
+- ll (owner 2026-10-28: LL's UI is built from bioxus bricks; its screens stay in the private ll_app): `ll-ui` pins `bioxus` by rev with features `design`, `widgets`, `locale-json` (tokens + `data-scheme`, TopBar/Panel/Section/BusyButton/Spinner/Notice/Chip and the bx-btn/bx-option classes, JSON catalogs); `ll-desktop` build.rs uses `icon::emit_png` (LL's own icon).
 
 - ss: PR #2 on grosjeanbaptiste/ss (stacked on #1), switching to `bioxus` (bioxus::design). Converge, actrack_deck: not started.
