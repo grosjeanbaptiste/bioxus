@@ -7,7 +7,7 @@ Layout and gates follow the `melos_apps` monorepo model: role-named packages und
 ## Use
 
 ```toml
-bioxus = { git = "https://github.com/grosjeanbaptiste/bioxus", tag = "v0.8.0" }
+bioxus = { git = "https://github.com/grosjeanbaptiste/bioxus", tag = "v0.9.0" }
 ```
 
 ```rust
@@ -33,4 +33,5 @@ Pick only what you need: `bioxus = { …, default-features = false, features = [
 | `bioxus-charts` | `BarChart` with pure geometry → `bioxus::charts` |
 | `bioxus-locale` | Locales, catalogs, fallback chain, interpolation, no UI dependency → `bioxus::locale` |
 | `bioxus-store` | Optional storage behind a `Store` port: memory, SQLite (feature `store-sqlite`), contract tests → `bioxus::store` |
+| `bioxus-sync` | Offline-first sync: hybrid logical clock, last-write-wins, `Transport` port (feature `sync`) → `bioxus::sync` |
 | `bioxus-design` | Tokens, reset, shared CSS (light and dark) → `bioxus::design` |

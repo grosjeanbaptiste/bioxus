@@ -15,12 +15,14 @@
 
 - `bioxus-store` v0.8.0: async `Store` port (get/put/list/changes_since; opaque string value, caller `stamp`, tombstones; older stamp ignored, equal replaces), `MemoryStore`, `SqliteStore` (feature `sqlite`, rusqlite bundled, stamp > i64::MAX is an error), shared `contract::check` + `block_on` for any adapter. Facade features `store`, `store-sqlite` (opt-in, not default). Gates now run with --all-features. IndexedDB adapter: NOT done (step 4b, needs wasm32 + web-sys; wasm32-unknown-unknown target is installed).
 
+- `bioxus-sync` v0.9.0: `Clock` (HLC stamp = 44-bit ms | 12-bit counter | 8-bit node, so max 256 nodes per account; drift guard 24 h; injected wall clock), `Transport` port with server arrival token (not stamp) as pull cursor, `MemoryTransport` hub, `Engine` (open seeds clock from store; put/delete/sync; pushes only own-node records, no echo; failed sync leaves markers untouched). 14 scenario tests: convergence, concurrent tie-break, late old-stamp push, tombstones, retry, idempotence, poisoned stamp, clock jump back. Facade feature `sync` (opt-in). HTTP transport NOT done: no server contract exists yet (step 5b).
+
 ## Roadmap (owner request 2026-10-28: ready-made designs, optional DB, sync, every design element for web/desktop/tablet/phone; proposed, not started)
 
 Apps import only `bioxus` (the melos_apps `act_root` rule); every block is a feature.
 - `bioxus-widgets` — AppShell, Badge, InputField (text/number/date, native types), Table, Dialog (native <dialog>, Esc via oncancel), Stat done (v0.5.0). Lists skipped (Table covers it; add on demand). Charts are in bioxus-charts.
 - `bioxus-store` — port, memory and sqlite done; `indexeddb` adapter (web/wasm) still to do.
-- `bioxus-sync` (feature `sync`, needs `store`) — outbox/inbox pipeline like act_acteble, last-write-wins on a hybrid logical clock, `Transport` port (HTTP first, p2p later like act_p2p).
+- `bioxus-sync` — engine, clock and in-process transport done; HTTP and p2p transports to do once a server contract exists.
 Open choice: web storage backend (IndexedDB vs sqlite-wasm) before bioxus-store starts.
 - Not ported from melos_apps: coverage floors, lint ceilings, test-impacted, pre-commit gate.
 

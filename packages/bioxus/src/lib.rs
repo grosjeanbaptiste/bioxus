@@ -21,6 +21,10 @@ pub use bioxus_locale as locale;
 #[cfg(feature = "store")]
 pub use bioxus_store as store;
 
+/// Offline-first sync (hybrid logical clock, last-write-wins).
+#[cfg(feature = "sync")]
+pub use bioxus_sync as sync;
+
 #[cfg(all(test, feature = "design"))]
 mod tests {
     #[test]
@@ -52,5 +56,12 @@ mod tests {
     fn exposes_the_store_port() {
         let store = super::store::MemoryStore::default();
         super::store::contract::block_on(super::store::contract::check(&store));
+    }
+
+    #[cfg(feature = "sync")]
+    #[test]
+    fn exposes_the_sync_engine() {
+        let stamp = super::sync::Clock::new(3).tick(1).unwrap();
+        assert_eq!(super::sync::clock::node_of(stamp), 3);
     }
 }
