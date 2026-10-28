@@ -27,12 +27,12 @@ by git tag.
 
 | Package | Role (the Flutter monorepo twin) |
 |---|---|
-| `bioxus` | Facade apps import: `bioxus::{design,widgets,charts,locale,store}` |
+| `bioxus` | Facade apps import: `bioxus::{design,widgets,charts,locale,store,sync}` |
 | `bioxus-charts` | Bar charts, pure geometry → `bioxus::charts` |
 | `bioxus-design` | Design system: tokens, constants, shared CSS (`[private package]`) |
 | `bioxus-widgets` | Responsive `AppShell` (bottom bar / rail / sidebar by CSS), `Badge` (`[private package]`) → `bioxus::widgets` |
 | `bioxus-store` | Optional DB behind a `Store` port (`[private package]`) → `bioxus::store` |
-| `bioxus-sync` | Outbox/inbox sync (`[private package]`, `[private package]`), planned |
+| `bioxus-sync` | HLC + last-write-wins sync over a `Transport` port (`[private package]`, `[private package]`) → `bioxus::sync` |
 | `bioxus-locale` | i18n, open locale tags (`[private package]`) → `bioxus::locale` |
 
 ## Conventions

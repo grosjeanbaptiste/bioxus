@@ -1,0 +1,13 @@
+[package]
+name = "bioxus-sync"
+description = "Offline-first sync: hybrid logical clock, last-write-wins, Transport port. Works on any Store."
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license-file = "../../LICENSE"
+
+[dependencies]
+bioxus-store = { path = "../bioxus-store" }
+
+[lints]
+workspace = true

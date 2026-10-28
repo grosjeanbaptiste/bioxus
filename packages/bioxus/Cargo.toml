@@ -11,6 +11,7 @@ bioxus-design = { path = "../bioxus-design", optional = true }
 bioxus-widgets = { path = "../bioxus-widgets", optional = true }
 bioxus-charts = { path = "../bioxus-charts", optional = true }
 bioxus-store = { path = "../bioxus-store", optional = true }
+bioxus-sync = { path = "../bioxus-sync", optional = true }
 bioxus-locale = { path = "../bioxus-locale", optional = true, default-features = false }
 
 [features]
@@ -22,6 +23,8 @@ locale = ["dep:bioxus-locale"]
 # Local storage behind the Store port; adapters are opt-in, none is default.
 store = ["dep:bioxus-store"]
 store-sqlite = ["store", "bioxus-store/sqlite"]
+# Offline-first sync on any Store (opt-in; brings the store port).
+sync = ["store", "dep:bioxus-sync"]
 # JSON catalogs for bioxus::locale
 locale-json = ["locale", "bioxus-locale/json"]
 

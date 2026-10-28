@@ -45,18 +45,19 @@ checksum = "f2032f911046de80f0a198e0901378627c33f59ea0ac00e363d481118bd70a53"
 
 [[package]]
 name = "bioxus"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "bioxus-charts",
  "bioxus-design",
  "bioxus-locale",
  "bioxus-store",
+ "bioxus-sync",
  "bioxus-widgets",
 ]
 
 [[package]]
 name = "bioxus-charts"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "bioxus-design",
  "bioxus-widgets",
@@ -66,25 +67,32 @@ dependencies = [
 
 [[package]]
 name = "bioxus-design"
-version = "0.8.0"
+version = "0.9.0"
 
 [[package]]
 name = "bioxus-locale"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "serde_json",
 ]
 
 [[package]]
 name = "bioxus-store"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "rusqlite",
 ]
 
 [[package]]
+name = "bioxus-sync"
+version = "0.9.0"
+dependencies = [
+ "bioxus-store",
+]
+
+[[package]]
 name = "bioxus-widgets"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "bioxus-design",
  "dioxus",
