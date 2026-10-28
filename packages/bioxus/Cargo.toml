@@ -9,11 +9,13 @@ license-file = "../../LICENSE"
 [dependencies]
 bioxus-design = { path = "../bioxus-design", optional = true }
 bioxus-widgets = { path = "../bioxus-widgets", optional = true }
+bioxus-charts = { path = "../bioxus-charts", optional = true }
 
 [features]
-default = ["design", "widgets"]
+default = ["design", "widgets", "charts"]
 design = ["dep:bioxus-design"]
 widgets = ["design", "dep:bioxus-widgets"]
+charts = ["widgets", "dep:bioxus-charts"]
 
 [lints]
 workspace = true

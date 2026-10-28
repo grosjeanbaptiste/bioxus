@@ -28,6 +28,7 @@ by git tag.
 | Package | Role (the Flutter monorepo twin) |
 |---|---|
 | `bioxus` | Facade apps import: `bioxus::design`, later `::widgets`, `::locale` |
+| `bioxus-charts` | Bar charts, pure geometry → `bioxus::charts` |
 | `bioxus-design` | Design system: tokens, constants, shared CSS (`[private package]`) |
 | `bioxus-widgets` | Responsive `AppShell` (bottom bar / rail / sidebar by CSS), `Badge` (`[private package]`) → `bioxus::widgets` |
 | `bioxus-store` | Optional DB behind a `Store` port (`[private package]`), planned |
