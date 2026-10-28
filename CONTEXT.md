@@ -11,13 +11,14 @@
 
 - `bioxus-charts` v0.6.0: `BarChart`/`Bar` (tone from widgets::Tone), pure `scale::fill/max_of` (NaN, negative, zero max, clamp tested). Replaces ss graph bars, actrack Bars. The collapsible tree of ss ResourceGraph stays app-side (needs ss domain types).
 
+- `bioxus-locale` v0.7.0: open `Locale` tags (chain fr-be -> fr -> fallback), `Catalog` (pairs/JSON flat+nested, key-by-key merge), `Translator` (missing key = visible key + handler, default stderr warn), `{name}` interpolation with `{{ }}` escapes. No UI dep; JSON behind feature `json`. ll-ui keeps its own typed `Strings` struct for now (migration only if the owner wants ll in scope).
+
 ## Roadmap (owner request 2026-10-28: ready-made designs, optional DB, sync, every design element for web/desktop/tablet/phone; proposed, not started)
 
 Apps import only `bioxus` (the melos_apps `act_root` rule); every block is a feature.
 - `bioxus-widgets` — AppShell, Badge, InputField (text/number/date, native types), Table, Dialog (native <dialog>, Esc via oncancel), Stat done (v0.5.0). Lists skipped (Table covers it; add on demand). Charts are in bioxus-charts.
 - `bioxus-store` (feature `store`, optional) — hexagonal `Store` port; adapters behind features: `sqlite` (rusqlite, desktop/mobile), `indexeddb` (web/wasm).
 - `bioxus-sync` (feature `sync`, needs `store`) — outbox/inbox pipeline like act_acteble, last-write-wins on a hybrid logical clock, `Transport` port (HTTP first, p2p later like act_p2p).
-- `bioxus-locale` — i18n.
 Open choice: web storage backend (IndexedDB vs sqlite-wasm) before bioxus-store starts.
 - Not ported from melos_apps: coverage floors, lint ceilings, test-impacted, pre-commit gate.
 

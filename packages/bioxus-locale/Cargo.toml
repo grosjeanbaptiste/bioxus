@@ -1,0 +1,18 @@
+[package]
+name = "bioxus-locale"
+description = "Open-ended i18n: string catalogs, fallback chain, key-by-key overrides. No UI dependency."
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license-file = "../../LICENSE"
+
+[dependencies]
+serde_json = { version = "1", optional = true }
+
+[features]
+default = ["json"]
+# Load catalogs from JSON (flat or nested objects of strings).
+json = ["dep:serde_json"]
+
+[lints]
+workspace = true
