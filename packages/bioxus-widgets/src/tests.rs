@@ -58,7 +58,7 @@ fn badge_carries_its_tone_class() {
 
 #[test]
 fn styles_use_only_design_tokens_and_no_px() {
-    let ok = |t: &str| bioxus_design::TOKENS.contains(&t) || t == "gutter";
+    let ok = |t: &str| bioxus_design::TOKENS.contains(&t) || ["gutter", "columns"].contains(&t);
     for t in STYLESHEET.split("var(--").skip(1) {
         let name = t.split(')').next().unwrap();
         assert!(ok(name), "unknown token --{name}");
@@ -134,4 +134,79 @@ fn title_names_the_nav_and_icons_are_decorative() {
         "only the item with an icon gets one"
     );
     assert!(html.contains("aria-hidden=\"true\""));
+}
+
+#[component]
+fn Bricks(running: bool, selected: bool, hinted: bool) -> Element {
+    rsx! {
+        TopBar { action: rsx! { button { class: "bx-btn", "⚙" } }, b { "App" } span { "3 / 10" } }
+        Panel { title: "Pairs",
+            Section { title: "Mine", p { "x" } }
+        }
+        BusyButton { label: "Install", busy_label: "Installing…", running, disabled: false, onclick: |_| {} }
+        Notice { tone: Tone::Danger, title: "Wrong", "expected: x" }
+        Chip { selected, hinted, onclick: |_| {}, "B1" }
+    }
+}
+
+fn render_bricks(running: bool, selected: bool, hinted: bool) -> String {
+    let props = BricksProps {
+        running,
+        selected,
+        hinted,
+    };
+    let mut dom = VirtualDom::new_with_props(Bricks, props);
+    dom.rebuild_in_place();
+    dioxus_ssr::render(&dom)
+}
+
+#[test]
+fn top_bar_puts_the_action_last() {
+    let html = render_bricks(false, false, false);
+    let bar = &html[html.find("bx-topbar").unwrap()..];
+    assert!(bar.find("3 / 10").unwrap() < bar.find("bx-topbar-action").unwrap());
+}
+
+#[test]
+fn panel_titles_itself_and_its_sections() {
+    let html = render_bricks(false, false, false);
+    assert!(html.contains("<h2>Pairs</h2>") && html.contains("class=\"bx-section-title\">Mine<"));
+}
+
+#[test]
+fn busy_button_shows_a_spinner_and_the_busy_label_only_while_running() {
+    let idle = render_bricks(false, false, false);
+    assert!(idle.contains("aria-busy=\"false\"") && idle.contains(">Install<"));
+    assert!(!idle.contains("bx-spinner"));
+    let busy = render_bricks(true, false, false);
+    assert!(busy.contains("aria-busy=\"true\"") && busy.contains("bx-spinner"));
+    assert!(busy.contains("Installing…") && !busy.contains(">Install<"));
+}
+
+#[test]
+fn notice_carries_its_tone_and_is_announced_when_danger() {
+    let html = render_bricks(false, false, false);
+    assert!(html.contains("class=\"bx-notice bx-danger\"") && html.contains("role=\"alert\""));
+    assert!(html.contains("class=\"bx-notice-title\">Wrong<"));
+}
+
+#[test]
+fn chip_states_are_attributes() {
+    let plain = render_bricks(false, false, false);
+    assert!(plain.contains("aria-pressed=\"false\"") && !plain.contains("data-hinted"));
+    let both = render_bricks(false, true, true);
+    assert!(both.contains("aria-pressed=\"true\"") && both.contains("data-hinted=\"true\""));
+}
+
+#[test]
+fn button_classes_are_styled() {
+    for class in [
+        ".bx-btn ",
+        ".bx-btn-primary",
+        ".bx-option",
+        ".bx-grid",
+        ".bx-spinner",
+    ] {
+        assert!(STYLESHEET.contains(class), "{class}");
+    }
 }

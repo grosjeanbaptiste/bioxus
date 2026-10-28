@@ -2,6 +2,7 @@
 //! no storage. Colours and spacing come from `bioxus-design` tokens only.
 
 pub mod badge;
+pub mod controls;
 pub mod dialog;
 pub mod field;
 pub mod nav;
@@ -10,6 +11,7 @@ pub mod stat;
 pub mod table;
 
 pub use badge::{Badge, Tone};
+pub use controls::{BusyButton, Chip, Notice, Panel, Section, Spinner, TopBar};
 pub use dialog::Dialog;
 pub use field::{InputField, InputKind};
 pub use nav::{NavItem, NavLayout};
