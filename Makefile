@@ -14,9 +14,9 @@ format: ## Format every package
 	@cargo fmt --all
 
 lint: need-dotfiles ## clippy, warnings are errors
-	@$(HEAVY) cargo clippy --workspace --all-targets -- -D warnings
+	@$(HEAVY) cargo clippy --workspace --all-targets --all-features -- -D warnings
 
 test: need-dotfiles ## Test every package
-	@$(HEAVY) cargo test --workspace
+	@$(HEAVY) cargo test --workspace --all-features
 
 ci-local: format-check lint test ## The CI gates, on this machine
