@@ -24,8 +24,10 @@
 
 .bx-field { display: flex; flex-direction: column; gap: 0.25rem; }
 .bx-label { color: var(--muted); font-size: 0.75rem; }
-.bx-field input { padding: 0.5rem; border: 0.0625rem solid var(--border); border-radius: 0.375rem; background: var(--surface); color: var(--fg); font: inherit; }
-.bx-field input[aria-invalid="true"] { border-color: var(--danger); }
+.bx-field input, .bx-field select, .bx-field textarea { padding: 0.5rem; border: 0.0625rem solid var(--border); border-radius: 0.375rem; background: var(--surface); color: var(--fg); font: inherit; }
+.bx-field textarea { min-height: 6rem; resize: vertical; }
+.bx-field [aria-invalid="true"] { border-color: var(--danger); }
+.bx-collapsible > summary { cursor: pointer; color: var(--muted); }
 .bx-error { color: var(--danger); font-size: 0.75rem; }
 .bx-table-wrap { overflow-x: auto; }
 .bx-table { width: 100%; border-collapse: collapse; }

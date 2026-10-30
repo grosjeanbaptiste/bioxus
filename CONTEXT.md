@@ -33,7 +33,7 @@
 ## Roadmap (owner request 2026-10-28: ready-made designs, optional DB, sync, every design element for web/desktop/tablet/phone; proposed, not started)
 
 Apps import only `bioxus` (the melos_apps `act_root` rule); every block is a feature.
-- `bioxus-widgets` — AppShell, Badge, InputField (text/number/date, native types), Table, Dialog (native <dialog>, Esc via oncancel), Stat done (v0.5.0). Lists skipped (Table covers it; add on demand). Charts are in bioxus-charts.
+- `bioxus-widgets` — AppShell, Badge, InputField (text/number/date, native types), Table, Dialog (native <dialog>, Esc via oncancel), Stat done (v0.5.0). SelectField, TextAreaField, Collapsible added 2026-10-30 (uncommitted at this writing). Lists skipped (Table covers it; add on demand). Charts are in bioxus-charts (BarChart, LineChart).
 - `bioxus-store` — port, memory, sqlite and `indexeddb` adapters done and tested.
 - `bioxus-sync` — engine, clock and in-process transport done; HTTP and p2p transports to do once a server contract exists.
 Open choice: web storage backend (IndexedDB vs sqlite-wasm) before bioxus-store starts.
@@ -49,6 +49,8 @@ Open choice: web storage backend (IndexedDB vs sqlite-wasm) before bioxus-store 
 - Emvi apps are out of scope (formal prohibition).
 
 ## Consumers
+
+- Goal (owner 2026-10-30): ll, ss, actrack, Actif, Converge, acteble_app must all be built with bioxus; screens and domain code stay in each app. Audit 2026-10-30 (component names and grep, not a line-by-line read): all six are already Dioxus. Pins: ss v0.0.1, actrack_deck v0.9.0, ll rev 2a72ae7, Converge rev 81f0717; Actif and acteble_app do not depend on bioxus. Local generics to replace: Actif NumField, DateField, Stat, StatusBadge, ChartCanvas, raw select and table; actrack_deck Bars, StatusBadge, raw select, table, textarea; Converge raw select, textarea, details. Not absorbed yet: the iOS icon embedding scripts of ll and actrack.
 
 - ll (owner 2026-10-28: LL's UI is built from bioxus bricks; its screens stay in the private ll_app): `ll-ui` pins `bioxus` by rev with features `design`, `widgets`, `locale-json` (tokens + `data-scheme`, TopBar/Panel/Section/BusyButton/Spinner/Notice/Chip and the bx-btn/bx-option classes, JSON catalogs); `ll-desktop` build.rs uses `icon::emit_png` (LL's own icon).
 

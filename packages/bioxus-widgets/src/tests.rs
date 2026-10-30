@@ -210,3 +210,76 @@ fn button_classes_are_styled() {
         assert!(STYLESHEET.contains(class), "{class}");
     }
 }
+
+#[component]
+fn MoreForms(error: Option<String>, open: bool) -> Element {
+    let options = vec![
+        ("eur".to_string(), "Euro".to_string()),
+        ("usd".to_string(), "Dollar".to_string()),
+    ];
+    rsx! {
+        SelectField { label: "Currency", value: "usd", options, on_change: |_| {}, error: error.clone() }
+        TextAreaField { label: "Notes", value: "a <b>", on_input: |_| {}, error }
+        Collapsible { summary: "Journal", open, "inside" }
+    }
+}
+
+fn render_more_forms(error: Option<&str>, open: bool) -> String {
+    let props = MoreFormsProps {
+        error: error.map(Into::into),
+        open,
+    };
+    let mut dom = VirtualDom::new_with_props(MoreForms, props);
+    dom.rebuild_in_place();
+    dioxus_ssr::render(&dom)
+}
+
+#[test]
+fn a_select_marks_only_the_current_option() {
+    let html = render_more_forms(None, false);
+
+    assert!(html.contains("Currency") && html.contains("<select"));
+    assert!(html.contains("value=\"eur\"") && html.contains("Dollar"));
+    assert_eq!(html.matches("selected").count(), 1, "{html}");
+    let usd = html.find("value=\"usd\"").expect("the usd option");
+    assert!(
+        html[usd..].find("selected").expect("selected")
+            < html[usd..].find("</option>").expect("end")
+    );
+}
+
+#[test]
+fn a_text_area_escapes_its_value() {
+    let html = render_more_forms(None, false);
+
+    assert!(html.contains("Notes") && html.contains("<textarea"));
+    assert!(!html.contains("a <b>"), "{html}");
+}
+
+#[test]
+fn select_and_text_area_announce_an_error() {
+    let html = render_more_forms(Some("wrong"), false);
+
+    assert_eq!(html.matches("role=\"alert\"").count(), 2, "{html}");
+    assert_eq!(html.matches("aria-invalid=\"true\"").count(), 2, "{html}");
+}
+
+#[test]
+fn a_valid_select_and_text_area_announce_nothing() {
+    let html = render_more_forms(None, false);
+
+    assert!(
+        !html.contains("role=\"alert\"") && !html.contains("aria-invalid"),
+        "{html}"
+    );
+}
+
+#[test]
+fn a_collapsible_is_native_and_follows_its_open_prop() {
+    let closed = render_more_forms(None, false);
+    let open = render_more_forms(None, true);
+
+    assert!(closed.contains("<summary") && closed.contains("Journal") && closed.contains("inside"));
+    assert!(!closed.contains(" open"), "{closed}");
+    assert!(open.contains(" open"), "{open}");
+}

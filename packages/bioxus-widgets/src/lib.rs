@@ -11,9 +11,9 @@ pub mod stat;
 pub mod table;
 
 pub use badge::{Badge, Tone};
-pub use controls::{BusyButton, Chip, Notice, Panel, Section, Spinner, TopBar};
+pub use controls::{BusyButton, Chip, Collapsible, Notice, Panel, Section, Spinner, TopBar};
 pub use dialog::Dialog;
-pub use field::{InputField, InputKind};
+pub use field::{InputField, InputKind, SelectField, TextAreaField};
 pub use nav::{NavItem, NavLayout};
 pub use shell::AppShell;
 pub use stat::Stat;

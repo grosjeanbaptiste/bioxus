@@ -6,3 +6,7 @@
 .bx-bar-fill.bx-warn { background: var(--warn); }
 .bx-bar-fill.bx-danger { background: var(--danger); }
 .bx-bar-value { color: var(--muted); font-size: 0.75rem; white-space: nowrap; }
+.bx-line svg { display: block; width: 100%; height: 12rem; }
+.bx-line polyline { fill: none; stroke: var(--accent); stroke-width: 0.125rem; vector-effect: non-scaling-stroke; }
+.bx-line-axis { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.75rem; }
+.bx-line-empty { color: var(--muted); }

@@ -5,6 +5,17 @@
 use crate::badge::Tone;
 use dioxus::prelude::*;
 
+/// A native fold; the browser handles the toggle and the keyboard.
+#[component]
+pub fn Collapsible(summary: String, #[props(default)] open: bool, children: Element) -> Element {
+    rsx! {
+        details { class: "bx-collapsible", open,
+            summary { "{summary}" }
+            {children}
+        }
+    }
+}
+
 /// A bar of short items; `action` sits at the end.
 #[component]
 pub fn TopBar(action: Element, children: Element) -> Element {
