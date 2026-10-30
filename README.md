@@ -32,6 +32,10 @@ For iOS, `bioxus::design::icon::ios::emit_set` writes the 13-file `AppIcon.appic
 
 then `dioxus::desktop::icon_from_memory(include_bytes!(concat!(env!("OUT_DIR"), "/app-icon.png")))` for the window, and the same file for bundles. `icon::emit` also keeps an SVG for the web favicon. A provided icon that is corrupt or unreadable fails the build; it never silently becomes the default.
 
+## New app
+
+`scripts/new-app.sh <name> <dir>` copies `template/`: one crate for web, desktop and mobile (features `web`, `desktop`, `mobile`), `AppShell`, icon `build.rs`, Makefile gates, `AGENTS.md`, `CONTEXT.md`, pinned to the current bioxus tag (`BIOXUS_TAG` overrides). Run it with `dx serve --platform web|desktop|ios|android`.
+
 ## Build
 
 `make ci-local`
@@ -52,7 +56,8 @@ then `dioxus::desktop::icon_from_memory(include_bytes!(concat!(env!("OUT_DIR"), 
 bioxus/
 ├── Cargo.toml            workspace, members = packages/*, Dioxus pinned once
 ├── Makefile              format-check, lint, test, wasm-check, wasm-test, ci-local
-├── scripts/              render-icon.sh, make-ios-set.sh
+├── scripts/              render-icon.sh, make-ios-set.sh, new-app.sh
+├── template/             multiplatform app copied by new-app.sh (not a workspace member)
 └── packages/
     ├── bioxus/           facade, features: design widgets charts locale locale-json store store-sqlite sync
     ├── bioxus-design/    src/{lib,form_factor,icon}.rs, theme.css, themes.css, assets/ (icons)
