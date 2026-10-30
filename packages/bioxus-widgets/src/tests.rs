@@ -414,4 +414,35 @@ mod gaps {
             STYLESHEET.contains(".bx-badge.bx-ok { border-color: var(--ok); color: var(--ok); }")
         );
     }
+
+    fn hidden_labels() -> Element {
+        let options = vec![("a".to_string(), "A".to_string())];
+        rsx! {
+            SelectField { label: "Pick", value: "a", options, on_change: |_| {}, label_hidden: true }
+            TextAreaField { label: "Query", value: "", on_input: |_| {}, label_hidden: true }
+            SelectField { label: "Shown", value: "", options: vec![], on_change: |_| {} }
+        }
+    }
+
+    #[test]
+    fn select_and_text_area_can_hide_their_label_for_assistive_tech_only() {
+        let html = html(hidden_labels);
+        assert_eq!(html.matches("bx-visually-hidden").count(), 2, "{html}");
+        assert!(html.contains("Pick") && html.contains("Query"), "{html}");
+    }
+
+    fn numeric_table() -> Element {
+        rsx! { DataTable { columns: vec!["Name".into(), "Close".into()], numeric_columns: vec![1], tr {} } }
+    }
+
+    #[test]
+    fn a_numeric_column_aligns_its_header_only_on_that_column() {
+        let html = html(numeric_table);
+        assert_eq!(html.matches("bx-num").count(), 1, "{html}");
+        let close = html.find(">Close<").expect("the Close header");
+        assert!(
+            html[..close].rfind("bx-num") > html[..close].rfind(">Name<"),
+            "{html}"
+        );
+    }
 }

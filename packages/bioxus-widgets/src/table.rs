@@ -26,12 +26,23 @@ pub fn Table(props: TableProps) -> Element {
 }
 
 /// A table whose rows the app writes: put [`TableRow`]s or plain `tr`s in it.
+/// `numeric_columns` are the indexes of the columns whose header aligns right, like their `bx-num` cells.
 #[component]
-pub fn DataTable(columns: Vec<String>, children: Element) -> Element {
+pub fn DataTable(
+    columns: Vec<String>,
+    #[props(default)] numeric_columns: Vec<usize>,
+    children: Element,
+) -> Element {
     rsx! {
         div { class: "bx-table-wrap",
             table { class: "bx-table",
-                thead { tr { for c in columns.iter() { th { scope: "col", "{c}" } } } }
+                thead {
+                    tr {
+                        for (i, c) in columns.iter().enumerate() {
+                            th { scope: "col", class: numeric_columns.contains(&i).then_some("bx-num"), "{c}" }
+                        }
+                    }
+                }
                 tbody { {children} }
             }
         }
