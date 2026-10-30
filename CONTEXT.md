@@ -32,6 +32,8 @@
 
 - 2026-10-30 — pushed tag v0.0.2 (workspace 0.0.2): SelectField, TextAreaField, Collapsible, LineChart; `new-app.sh` pins it.
 
+- 2026-10-30 — pushed tag v0.0.3 (workspace 0.0.3): the widget gaps listed under Consumers.
+
 ## Roadmap (owner request 2026-10-28: ready-made designs, optional DB, sync, every design element for web/desktop/tablet/phone; proposed, not started)
 
 Apps import only `bioxus` (the melos_apps `act_root` rule); every block is a feature.
@@ -52,7 +54,7 @@ Open choice: web storage backend (IndexedDB vs sqlite-wasm) before bioxus-store 
 
 ## Consumers
 
-- Goal (owner 2026-10-30): ll, ss, actrack, Actif, Converge, acteble_app must all be built with bioxus; screens and domain code stay in each app. Audit 2026-10-30 (component names and grep, not a line-by-line read): all six are already Dioxus. All on bioxus since 2026-10-30, merged PRs: acteble_app#1, converge#1, actrack_deck#43, ll_app#3, Actif#1 on v0.0.2; ss#3 on v0.0.1 (branch `bioxus-ui`, not master). Not compiled by an agent: Converge (none) and acteble_app (`cargo test` not run, CONVENTIONS §16.2). No app checked on screen. Widget gaps that blocked replacements: Table has no cell class or clickable rows, InputField has no placeholder, autofocus, disabled or maxlength, AppShell has no section titles or disabled links, Tone::Ok renders in --accent, not green. Not absorbed yet: the iOS icon embedding scripts of ll and actrack.
+- Goal (owner 2026-10-30): ll, ss, actrack, Actif, Converge, acteble_app must all be built with bioxus; screens and domain code stay in each app. Audit 2026-10-30 (component names and grep, not a line-by-line read): all six are already Dioxus. All on bioxus since 2026-10-30, merged PRs: acteble_app#1, converge#1, actrack_deck#43, ll_app#3, Actif#1 on v0.0.2; ss#3 on v0.0.1 (branch `bioxus-ui`, not master). Not compiled by an agent: Converge (none) and acteble_app (`cargo test` not run, CONVENTIONS §16.2). No app checked on screen. Widget gaps closed in v0.0.3: DataTable + TableRow (rich cells, selectable rows), `bx-num`; InputField placeholder, disabled, autofocus, max_length, class, label_hidden; CheckField; NavItem with_section and disabled; Tone::Ok renders in --ok. Not absorbed yet: the iOS icon embedding scripts of ll and actrack.
 
 - ll (owner 2026-10-28: LL's UI is built from bioxus bricks; its screens stay in the private ll_app): `ll-ui` pins `bioxus` by rev with features `design`, `widgets`, `locale-json` (tokens + `data-scheme`, TopBar/Panel/Section/BusyButton/Spinner/Notice/Chip and the bx-btn/bx-option classes, JSON catalogs); `ll-desktop` build.rs uses `icon::emit_png` (LL's own icon).
 

@@ -19,6 +19,13 @@ pub struct AppShellProps {
     pub children: Element,
 }
 
+/// The heading to show before item `i`: its section, when the previous item is in another.
+fn section_starting_at(items: &[NavItem], i: usize) -> Option<&str> {
+    let section = items[i].section.as_deref()?;
+    let previous = i.checked_sub(1).and_then(|p| items[p].section.as_deref());
+    (previous != Some(section)).then_some(section)
+}
+
 /// Navigation plus content: bottom bar on phones, rail on tablets, sidebar on desktops.
 #[component]
 pub fn AppShell(props: AppShellProps) -> Element {
@@ -30,19 +37,24 @@ pub fn AppShell(props: AppShellProps) -> Element {
                 if let Some(title) = &props.title {
                     p { class: "bx-nav-title", "{title}" }
                 }
-                for item in props.items.iter() {
-                    button {
-                        key: "{item.id}",
-                        class: "bx-nav-item",
-                        "aria-current": (item.id == props.active).then_some("page"),
-                        onclick: {
-                            let id = item.id.clone();
-                            move |_| on_select.call(id.clone())
-                        },
-                        if let Some(icon) = &item.icon {
-                            span { class: "bx-nav-icon", "aria-hidden": "true", "{icon}" }
+                for (i, item) in props.items.iter().enumerate() {
+                    Fragment { key: "{item.id}",
+                        if let Some(section) = section_starting_at(&props.items, i) {
+                            p { class: "bx-nav-section", "{section}" }
                         }
-                        span { class: "bx-nav-label", "{item.label}" }
+                        button {
+                            class: "bx-nav-item",
+                            disabled: item.disabled,
+                            "aria-current": (item.id == props.active).then_some("page"),
+                            onclick: {
+                                let id = item.id.clone();
+                                move |_| on_select.call(id.clone())
+                            },
+                            if let Some(icon) = &item.icon {
+                                span { class: "bx-nav-icon", "aria-hidden": "true", "{icon}" }
+                            }
+                            span { class: "bx-nav-label", "{item.label}" }
+                        }
                     }
                 }
             }

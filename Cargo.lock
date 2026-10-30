@@ -51,7 +51,7 @@ checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
 
 [[package]]
 name = "bioxus"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "bioxus-charts",
  "bioxus-design",
@@ -64,7 +64,7 @@ dependencies = [
 
 [[package]]
 name = "bioxus-charts"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "bioxus-design",
  "bioxus-widgets",
@@ -74,18 +74,18 @@ dependencies = [
 
 [[package]]
 name = "bioxus-design"
-version = "0.0.2"
+version = "0.0.3"
 
 [[package]]
 name = "bioxus-locale"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "serde_json",
 ]
 
 [[package]]
 name = "bioxus-store"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "idb",
  "js-sys",
@@ -96,14 +96,14 @@ dependencies = [
 
 [[package]]
 name = "bioxus-sync"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "bioxus-store",
 ]
 
 [[package]]
 name = "bioxus-viewer3d"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "base64",
  "dioxus",
@@ -113,7 +113,7 @@ dependencies = [
 
 [[package]]
 name = "bioxus-widgets"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "bioxus-design",
  "dioxus",
