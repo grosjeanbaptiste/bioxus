@@ -9,6 +9,10 @@ pub struct NavItem {
     pub label: String,
     /// Short glyph before the label (an emoji or a letter); decorative, hidden from assistive tech.
     pub icon: Option<String>,
+    /// Heading of the group this item belongs to, shown on the sidebar layout only.
+    pub section: Option<String>,
+    /// Shown but not selectable.
+    pub disabled: bool,
 }
 
 impl NavItem {
@@ -17,12 +21,26 @@ impl NavItem {
             id: id.into(),
             label: label.into(),
             icon: None,
+            section: None,
+            disabled: false,
         }
     }
 
     #[must_use]
     pub fn with_icon(mut self, icon: impl Into<String>) -> Self {
         self.icon = Some(icon.into());
+        self
+    }
+
+    #[must_use]
+    pub fn with_section(mut self, section: impl Into<String>) -> Self {
+        self.section = Some(section.into());
+        self
+    }
+
+    #[must_use]
+    pub fn disabled(mut self) -> Self {
+        self.disabled = true;
         self
     }
 }

@@ -283,3 +283,135 @@ fn a_collapsible_is_native_and_follows_its_open_prop() {
     assert!(!closed.contains(" open"), "{closed}");
     assert!(open.contains(" open"), "{open}");
 }
+
+mod gaps {
+    use super::*;
+
+    fn html(app: fn() -> Element) -> String {
+        let mut dom = VirtualDom::new(app);
+        dom.rebuild_in_place();
+        dioxus_ssr::render(&dom)
+    }
+
+    fn shell() -> Element {
+        let items = vec![
+            NavItem::new("a", "A").with_section("Money"),
+            NavItem::new("b", "B").with_section("Money"),
+            NavItem::new("c", "C").with_section("Docs").disabled(),
+            NavItem::new("d", "D"),
+        ];
+        rsx! { AppShell { items, active: "a", on_select: |_| {}, "x" } }
+    }
+
+    #[test]
+    fn a_section_title_shows_once_when_the_section_changes() {
+        let html = html(shell);
+        assert_eq!(html.matches("bx-nav-section").count(), 2, "{html}");
+        assert_eq!(html.matches(">Money<").count(), 1, "{html}");
+        assert!(html.find(">Money<") < html.find(">Docs<"));
+    }
+
+    #[test]
+    fn a_disabled_item_is_a_disabled_button_and_only_that_one() {
+        let html = html(shell);
+        assert_eq!(html.matches(" disabled").count(), 1, "{html}");
+        let c = html.find(">C<").expect("item C");
+        let button = html[..c].rfind("<button").expect("its button");
+        assert!(html[button..c].contains(" disabled"), "{html}");
+    }
+
+    #[test]
+    fn section_titles_are_only_visible_on_the_sidebar() {
+        assert!(STYLESHEET.contains(".bx-nav-section { display: none"));
+        assert!(STYLESHEET.contains(".bx-shell[data-layout=\"sidebar\"] .bx-nav-section"));
+    }
+
+    fn input() -> Element {
+        rsx! {
+            InputField {
+                label: "Search", value: "", on_input: |_| {},
+                placeholder: "ISIN", disabled: true, autofocus: true, max_length: 12,
+                class: "mine", label_hidden: true,
+            }
+            InputField { label: "Plain", value: "", on_input: |_| {} }
+        }
+    }
+
+    #[test]
+    fn an_input_forwards_its_native_attributes() {
+        let html = html(input);
+        for attr in [
+            "placeholder=\"ISIN\"",
+            " disabled",
+            " autofocus",
+            "maxlength=12",
+            "class=\"mine\"",
+        ] {
+            assert_eq!(html.matches(attr).count(), 1, "{attr} in {html}");
+        }
+    }
+
+    #[test]
+    fn a_hidden_label_stays_for_assistive_tech() {
+        let html = html(input);
+        assert!(html.contains("Search"), "{html}");
+        assert_eq!(html.matches("bx-visually-hidden").count(), 1, "{html}");
+        assert!(STYLESHEET.contains(".bx-visually-hidden"));
+    }
+
+    fn check() -> Element {
+        rsx! {
+            CheckField { label: "On", checked: true, on_change: |_| {} }
+            CheckField { label: "Off", checked: false, on_change: |_| {}, disabled: true }
+        }
+    }
+
+    #[test]
+    fn a_check_field_is_a_native_checkbox_following_its_state() {
+        let html = html(check);
+        assert_eq!(html.matches("type=\"checkbox\"").count(), 2, "{html}");
+        assert_eq!(html.matches(" checked").count(), 1, "{html}");
+        assert_eq!(html.matches(" disabled").count(), 1, "{html}");
+    }
+
+    fn table() -> Element {
+        rsx! {
+            DataTable { columns: vec!["A".into(), "B".into()],
+                TableRow { selected: true, on_select: |_| {}, td { class: "bx-num", "1" } }
+                TableRow { td { "plain" } }
+            }
+        }
+    }
+
+    #[test]
+    fn a_data_table_holds_rich_cells() {
+        let html = html(table);
+        assert!(
+            html.contains("class=\"bx-table\"") && html.contains("class=\"bx-num\""),
+            "{html}"
+        );
+        assert_eq!(html.matches("<th scope").count(), 2, "{html}");
+    }
+
+    #[test]
+    fn only_a_selectable_row_is_reachable_and_marked() {
+        let html = html(table);
+        assert_eq!(html.matches("tabindex=0").count(), 1, "{html}");
+        assert_eq!(html.matches("aria-selected=\"true\"").count(), 1, "{html}");
+        assert_eq!(html.matches("bx-row-action").count(), 1, "{html}");
+    }
+
+    #[test]
+    fn numbers_align_and_a_selectable_row_has_a_focus_style() {
+        assert!(
+            STYLESHEET.contains(".bx-num") && STYLESHEET.contains(".bx-row-action:focus-visible")
+        );
+    }
+
+    #[test]
+    fn an_ok_badge_uses_the_ok_token() {
+        assert!(
+            STYLESHEET.contains(".bx-badge.bx-ok { border-color: var(--ok); color: var(--ok); }")
+        );
+    }
+}
