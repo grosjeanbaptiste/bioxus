@@ -20,6 +20,35 @@ pub fn max_of(values: &[f64]) -> f64 {
         .fold(0.0, f64::max)
 }
 
+/// SVG `points` of a line through `values` in a `width` x `height` frame. A non-finite value
+/// is left out but keeps its slot on the x axis; a flat series sits mid-height.
+#[must_use]
+pub fn polyline(values: &[f64], width: f64, height: f64) -> String {
+    let finite = || values.iter().copied().filter(|v| v.is_finite());
+    let low = finite().fold(f64::INFINITY, f64::min);
+    let high = finite().fold(f64::NEG_INFINITY, f64::max);
+    let last = values.len().saturating_sub(1);
+    let points: Vec<String> = values
+        .iter()
+        .enumerate()
+        .filter(|(_, v)| v.is_finite())
+        .map(|(i, v)| {
+            let x = if last == 0 {
+                0.5
+            } else {
+                i as f64 / last as f64
+            };
+            let y = if high > low {
+                (high - v) / (high - low)
+            } else {
+                0.5
+            };
+            format!("{:.2},{:.2}", x * width, y * height)
+        })
+        .collect();
+    points.join(" ")
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
