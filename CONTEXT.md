@@ -28,6 +28,8 @@
 
 - 2026-10-30 — `template/` + `scripts/new-app.sh <name> <dir>`: multiplatform app (web/desktop/mobile features, AppShell, icon build.rs, gates, AGENTS/CONTEXT). Verified: generated app passes fmt, clippy `-D warnings` and its SSR test offline with `--no-default-features --features store,sync` against the local checkout. NOT verified: `web`, `desktop`, `mobile` features and `dx serve` (crates.io unreachable from the sandbox).
 
+- 2026-10-30 — pushed main and tag v0.0.1 (workspace 0.0.1): first tag containing the template, widgets TopBar/Panel/Section/Spinner/BusyButton/Notice/Chip, viewer3d and the README structure. v0.0.0 is untouched (older commit); `new-app.sh` pins v0.0.1.
+
 ## Roadmap (owner request 2026-10-28: ready-made designs, optional DB, sync, every design element for web/desktop/tablet/phone; proposed, not started)
 
 Apps import only `bioxus` (the melos_apps `act_root` rule); every block is a feature.
