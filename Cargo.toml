@@ -1,6 +1,8 @@
 [workspace]
 resolver = "2"
 members = ["packages/*"]
+# The app template is copied out by scripts/new-app.sh, never built in place.
+exclude = ["template"]
 
 [workspace.package]
 version = "0.0.0"

@@ -26,6 +26,8 @@
 - 2026-10-28 — other Claude sessions commit straight into this checkout (e.g. 6ceed9b "forced scheme, ok and on-accent tokens", made while I worked); my push of main published it with mine. Check `git log` before assuming a commit is yours.
 - Icons beyond iOS (decided, not built): web favicon uses the master SVG/PNG (`icon::emit`/`emit_png`), Android launcher sizes derive from the master with the platform tooling; ll and actrack keep no web or Android icon convention to follow, so no extra sets were invented.
 
+- 2026-10-30 — `template/` + `scripts/new-app.sh <name> <dir>`: multiplatform app (web/desktop/mobile features, AppShell, icon build.rs, gates, AGENTS/CONTEXT). Verified: generated app passes fmt, clippy `-D warnings` and its SSR test offline with `--no-default-features --features store,sync` against the local checkout. NOT verified: `web`, `desktop`, `mobile` features and `dx serve` (crates.io unreachable from the sandbox).
+
 ## Roadmap (owner request 2026-10-28: ready-made designs, optional DB, sync, every design element for web/desktop/tablet/phone; proposed, not started)
 
 Apps import only `bioxus` (the melos_apps `act_root` rule); every block is a feature.

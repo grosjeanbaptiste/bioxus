@@ -1,0 +1,33 @@
+[package]
+name = "__NAME__"
+version = "0.0.0"
+edition = "2021"
+
+[features]
+# One crate, one feature per platform: `dx serve --platform web|desktop|ios|android`.
+default = ["web"]
+web = ["dioxus/web"]
+desktop = ["dioxus/desktop"]
+mobile = ["dioxus/mobile"]
+# Optional blocks, nothing imposed: local DB and sync.
+store = ["bioxus/store"]
+store-sqlite = ["bioxus/store-sqlite"]
+sync = ["bioxus/sync"]
+
+[dependencies]
+dioxus = { version = "0.7" }
+bioxus = { git = "https://github.com/grosjeanbaptiste/bioxus", tag = "__TAG__" }
+
+[build-dependencies]
+# Resolves the app icon: the repo's own, else the BIOXUS one.
+bioxus = { git = "https://github.com/grosjeanbaptiste/bioxus", tag = "__TAG__", default-features = false, features = ["design"] }
+
+[dev-dependencies]
+dioxus-ssr = "0.7"
+
+[lints.rust]
+unsafe_code = "forbid"
+warnings = "deny"
+
+[lints.clippy]
+all = { level = "deny", priority = -1 }
