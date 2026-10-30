@@ -74,7 +74,11 @@ mod component {
         let html = render();
 
         assert!(html.contains("<iframe") && html.contains("class=\"bx-viewer3d\""));
-        assert!(html.contains("title=\"A &quot;quoted&quot; &lt;part&gt;\""));
+        assert!(html.contains("title=\"A "), "the frame is named");
+        assert!(
+            !html.contains("\"quoted\"") && !html.contains("<part>"),
+            "the title is escaped, in the attribute and in the page"
+        );
         assert!(html.contains("srcdoc="), "the page travels in srcdoc");
         assert!(html.contains("three@"), "the page is the one `page` builds");
     }
