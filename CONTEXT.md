@@ -30,10 +30,12 @@
 
 - 2026-10-30 — pushed main and tag v0.0.1 (workspace 0.0.1): first tag containing the template, widgets TopBar/Panel/Section/Spinner/BusyButton/Notice/Chip, viewer3d and the README structure. v0.0.0 is untouched (older commit); `new-app.sh` pins v0.0.1.
 
+- 2026-10-30 — pushed tag v0.0.2 (workspace 0.0.2): SelectField, TextAreaField, Collapsible, LineChart; `new-app.sh` pins it.
+
 ## Roadmap (owner request 2026-10-28: ready-made designs, optional DB, sync, every design element for web/desktop/tablet/phone; proposed, not started)
 
 Apps import only `bioxus` (the melos_apps `act_root` rule); every block is a feature.
-- `bioxus-widgets` — AppShell, Badge, InputField (text/number/date, native types), Table, Dialog (native <dialog>, Esc via oncancel), Stat done (v0.5.0). SelectField, TextAreaField, Collapsible added 2026-10-30 (uncommitted at this writing). Lists skipped (Table covers it; add on demand). Charts are in bioxus-charts (BarChart, LineChart).
+- `bioxus-widgets` — AppShell, Badge, InputField (text/number/date, native types), Table, Dialog (native <dialog>, Esc via oncancel), Stat done (v0.5.0). SelectField, TextAreaField, Collapsible added 2026-10-30 (v0.0.2). Lists skipped (Table covers it; add on demand). Charts are in bioxus-charts (BarChart, LineChart).
 - `bioxus-store` — port, memory, sqlite and `indexeddb` adapters done and tested.
 - `bioxus-sync` — engine, clock and in-process transport done; HTTP and p2p transports to do once a server contract exists.
 Open choice: web storage backend (IndexedDB vs sqlite-wasm) before bioxus-store starts.
