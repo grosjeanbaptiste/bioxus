@@ -81,6 +81,9 @@ pub struct SelectFieldProps {
     /// `(value, label)` of each option, in display order.
     pub options: Vec<(String, String)>,
     pub on_change: EventHandler<String>,
+    /// Keep the label for assistive tech only.
+    #[props(default)]
+    pub label_hidden: bool,
     /// Shown under the select and announced as invalid when set.
     #[props(default)]
     pub error: Option<String>,
@@ -91,7 +94,7 @@ pub fn SelectField(props: SelectFieldProps) -> Element {
     let on_change = props.on_change;
     rsx! {
         label { class: "bx-field",
-            span { class: "bx-label", "{props.label}" }
+            span { class: if props.label_hidden { "bx-visually-hidden" } else { "bx-label" }, "{props.label}" }
             select {
                 "aria-invalid": props.error.is_some().then_some("true"),
                 onchange: move |e| on_change.call(e.value()),
@@ -111,6 +114,9 @@ pub struct TextAreaFieldProps {
     pub label: String,
     pub value: String,
     pub on_input: EventHandler<String>,
+    /// Keep the label for assistive tech only.
+    #[props(default)]
+    pub label_hidden: bool,
     /// Shown under the text area and announced as invalid when set.
     #[props(default)]
     pub error: Option<String>,
@@ -121,7 +127,7 @@ pub fn TextAreaField(props: TextAreaFieldProps) -> Element {
     let on_input = props.on_input;
     rsx! {
         label { class: "bx-field",
-            span { class: "bx-label", "{props.label}" }
+            span { class: if props.label_hidden { "bx-visually-hidden" } else { "bx-label" }, "{props.label}" }
             textarea {
                 value: "{props.value}",
                 "aria-invalid": props.error.is_some().then_some("true"),

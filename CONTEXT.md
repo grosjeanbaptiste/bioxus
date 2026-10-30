@@ -1,4 +1,4 @@
-# bioxus — state as of 2026-10-30
+# bioxus — state as of 2026-10-30 (late)
 
 ## Current state
 
@@ -33,6 +33,8 @@
 - 2026-10-30 — pushed tag v0.0.2 (workspace 0.0.2): SelectField, TextAreaField, Collapsible, LineChart; `new-app.sh` pins it.
 
 - 2026-10-30 — pushed tag v0.0.3 (workspace 0.0.3): the widget gaps listed under Consumers.
+
+- 2026-10-30 — next gaps, implemented and tested but committed and tagged v0.0.4 (not pushed): `label_hidden` on SelectField and TextAreaField; `DataTable.numeric_columns` (header gets `bx-num`). `bioxus-widgets` tests (37), clippy `-D warnings` and fmt pass. `make ci-local` passes.
 
 ## Roadmap (owner request 2026-10-28: ready-made designs, optional DB, sync, every design element for web/desktop/tablet/phone; proposed, not started)
 
