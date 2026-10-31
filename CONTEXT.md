@@ -1,7 +1,15 @@
-# bioxus — public state as of 2026-10-31
+# bioxus — public state as of 2026-11-01
 
 The detailed working state names private projects and lives in `CONTEXT.private.md`
 (ignored by git). This file holds only what is safe to publish.
+
+## History rewrite (2026-11-01)
+
+The history was rewritten to remove references to other projects from commit messages and
+tags, and force-pushed (`main` and all 16 tags `v0.0.0`..`v0.9.0`). Commit hashes changed.
+Anyone with a clone or a `Cargo.lock` pinning an old hash must re-clone or run
+`cargo update -p bioxus`. Verified on a fresh clone of the remote: no private name in any
+reachable commit, message or tag.
 
 ## Current state
 
