@@ -4,7 +4,7 @@ description = "Optional local storage behind a Store port: memory and SQLite ada
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
-license-file = "../../LICENSE"
+license.workspace = true
 
 [dependencies]
 rusqlite = { version = "0.32", features = ["bundled"], optional = true }

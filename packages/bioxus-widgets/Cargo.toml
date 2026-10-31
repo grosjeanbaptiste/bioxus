@@ -4,7 +4,7 @@ description = "Responsive app shell and reusable Dioxus widgets, renderer-agnost
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
-license-file = "../../LICENSE"
+license.workspace = true
 
 [dependencies]
 dioxus.workspace = true

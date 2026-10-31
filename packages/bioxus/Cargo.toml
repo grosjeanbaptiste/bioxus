@@ -4,7 +4,7 @@ description = "Build blocks for Dioxus apps: one dependency, one module per buil
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
-license-file = "../../LICENSE"
+license.workspace = true
 
 [dependencies]
 bioxus-design = { path = "../bioxus-design", optional = true }

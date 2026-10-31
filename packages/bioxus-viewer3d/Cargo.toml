@@ -4,7 +4,7 @@ description = "3D viewer for glTF binaries: a pure page builder, and a Dioxus co
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
-license-file = "../../LICENSE"
+license.workspace = true
 
 [dependencies]
 base64 = "0.22"

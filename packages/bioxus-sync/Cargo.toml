@@ -4,7 +4,7 @@ description = "Offline-first sync: hybrid logical clock, last-write-wins, Transp
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
-license-file = "../../LICENSE"
+license.workspace = true
 
 [dependencies]
 bioxus-store = { path = "../bioxus-store" }

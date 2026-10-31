@@ -91,3 +91,11 @@ Key: `(collection, id)`. Index: `stamp`, which serves `changes_since(stamp)`. `l
 | IndexedDB | `indexeddb` on `bioxus-store` (wasm32) | Object store `records`, key path `[collection, id]`, index `stamp`. `stamp` is a 20-digit decimal string (JS numbers hold 53 bits) |
 
 With `sync`, the stamp is a hybrid logical clock: 44 bits of milliseconds, 12 bits of counter, 8 bits of node id (256 nodes at most). Conflicts resolve last-write-wins; a clock more than 24 h ahead is refused.
+
+## Licence and contributing
+
+Copyright (c) Baptiste Grosjean. Public and open to contributions, under the
+PolyForm Noncommercial License 1.0.0 (`LICENSE`): free for noncommercial use;
+commercial use needs written permission. This is source-available, not OSI open
+source. See `CONTRIBUTING.md` before sending code (sign-off and contributor agreement).
+Releases up to `v0.0.5` were published under an earlier proprietary notice and stay under it.

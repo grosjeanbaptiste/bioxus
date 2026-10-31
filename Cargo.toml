@@ -8,7 +8,7 @@ exclude = ["template"]
 version = "0.0.5"
 edition = "2021"
 authors = ["Baptiste Grosjean <grosjeanbaptiste@outlook.com>"]
-license-file = "LICENSE"
+license = "PolyForm-Noncommercial-1.0.0"
 
 [workspace.dependencies]
 # One Dioxus version for every consumer; [app] is migrated 0.6 -> 0.7 first.
