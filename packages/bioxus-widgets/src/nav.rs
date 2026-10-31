@@ -13,6 +13,8 @@ pub struct NavItem {
     pub section: Option<String>,
     /// Shown but not selectable.
     pub disabled: bool,
+    /// Kept out of the phone bottom bar, in a drawer opened by the `more_label` button.
+    pub secondary: bool,
 }
 
 impl NavItem {
@@ -23,6 +25,7 @@ impl NavItem {
             icon: None,
             section: None,
             disabled: false,
+            secondary: false,
         }
     }
 
@@ -41,6 +44,12 @@ impl NavItem {
     #[must_use]
     pub fn disabled(mut self) -> Self {
         self.disabled = true;
+        self
+    }
+
+    #[must_use]
+    pub fn secondary(mut self) -> Self {
+        self.secondary = true;
         self
     }
 }

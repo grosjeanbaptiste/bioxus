@@ -30,3 +30,5 @@ pub const STYLESHEET: &str = include_str!("widgets.css");
 mod tests;
 #[cfg(test)]
 mod tests_blocks;
+#[cfg(test)]
+mod tests_drawer;
