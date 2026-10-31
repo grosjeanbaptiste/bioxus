@@ -71,7 +71,7 @@ fn Forms(error: Option<String>, open: bool) -> Element {
     rsx! {
         InputField { label: "Amount", value: "12", on_input: |_| {}, kind: InputKind::Number, error }
         Table { columns: vec!["A".into(), "B".into()], rows: vec![vec!["1".into(), "2".into()], vec!["3".into(), "4".into()]] }
-        Dialog { open, title: "Sure?", on_close: |_| {}, "body" }
+        Dialog { open, title: "Sure?", close_label: "Fermer", on_close: |_| {}, "body" }
         Stat { label: "Total", value: "42" }
     }
 }
@@ -108,6 +108,12 @@ fn table_renders_headers_and_every_cell() {
     let html = render_forms(None, false);
     assert_eq!(html.matches("<th ").count(), 2);
     assert_eq!(html.matches("<td>").count(), 4);
+}
+
+#[test]
+fn dialog_close_button_uses_the_given_label() {
+    let html = render_forms(None, true);
+    assert!(html.contains(">Fermer<") && !html.contains(">Close<"));
 }
 
 #[test]

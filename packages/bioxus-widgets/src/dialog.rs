@@ -6,6 +6,8 @@ use dioxus::prelude::*;
 pub struct DialogProps {
     pub open: bool,
     pub title: String,
+    /// Text of the close button; the library holds no wording of its own.
+    pub close_label: String,
     pub on_close: EventHandler<()>,
     pub children: Element,
 }
@@ -17,7 +19,7 @@ pub fn Dialog(props: DialogProps) -> Element {
         dialog { class: "bx-dialog", open: props.open, oncancel: move |_| on_close.call(()),
             h2 { "{props.title}" }
             {props.children}
-            button { class: "bx-nav-item", onclick: move |_| on_close.call(()), "Close" }
+            button { class: "bx-nav-item", onclick: move |_| on_close.call(()), "{props.close_label}" }
         }
     }
 }
