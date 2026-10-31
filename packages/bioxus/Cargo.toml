@@ -14,6 +14,14 @@ bioxus-store = { path = "../bioxus-store", optional = true }
 bioxus-sync = { path = "../bioxus-sync", optional = true }
 bioxus-locale = { path = "../bioxus-locale", optional = true, default-features = false }
 bioxus-viewer3d = { path = "../bioxus-viewer3d", optional = true, default-features = false }
+# Maintained Dioxus 0.7 crates re-exported as they are (owner 2026-10-30: reuse existing libraries).
+lucide-dioxus = { version = "3.63", optional = true, default-features = false }
+dioxus-sdk-storage = { version = "0.7", optional = true }
+dioxus-sdk-time = { version = "0.7", optional = true }
+
+[dev-dependencies]
+dioxus.workspace = true
+dioxus-ssr = "0.7"
 
 [features]
 default = ["design", "widgets", "charts", "locale", "locale-json", "viewer3d-ui"]
@@ -29,6 +37,12 @@ sync = ["store", "dep:bioxus-sync"]
 # 3D viewer: `viewer3d` is the page builder alone, `viewer3d-ui` adds the Dioxus component.
 viewer3d = ["dep:bioxus-viewer3d"]
 viewer3d-ui = ["viewer3d", "design", "bioxus-viewer3d/component"]
+# Lucide icons (all categories: opt-in, it is ~1700 modules to compile).
+icons = ["dep:lucide-dioxus", "lucide-dioxus/all-icons"]
+# Signals persisted in local/session storage.
+persist = ["dep:dioxus-sdk-storage"]
+# Interval, timeout and debounce hooks.
+time = ["dep:dioxus-sdk-time"]
 # JSON catalogs for bioxus::locale
 locale-json = ["locale", "bioxus-locale/json"]
 
