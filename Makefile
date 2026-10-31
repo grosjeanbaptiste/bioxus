@@ -1,4 +1,4 @@
-# Same target names as the Flutter monorepo (format-check, lint, test, ci-local).
+# Gate targets: format-check, lint, test, ci-local.
 # Every build/test goes through the heavy queue; without `dotfiles` it fails, naming it.
 HEAVY := $(shell command -v dotfiles >/dev/null 2>&1 && echo "dotfiles heavy run --quick --" || echo "")
 

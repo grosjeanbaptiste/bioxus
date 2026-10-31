@@ -16,7 +16,7 @@ pub const CANDIDATES: [&str; 8] = [
     "icon.svg",
     "icon.png",
     "stores/ios/icon.png",
-    // The 1024 of an app's iOS set ([app], [app] conventions) is its icon too.
+    // The 1024 of an app's iOS set (the usual convention) is its icon too.
     "stores/ios/AppIcon.appiconset/icon_1024x1024.png",
     "ui/mobile/assets/icons/icon_1024x1024.png",
     "assets/icons/icon_1024x1024.png",

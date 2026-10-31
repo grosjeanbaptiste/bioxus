@@ -20,3 +20,6 @@
 
 # Cargo build output
 target/
+
+# Private working state (names private projects): never tracked
+CONTEXT.private.md

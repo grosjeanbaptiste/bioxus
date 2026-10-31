@@ -1,7 +1,6 @@
-//! The iOS icon set: 13 PNGs named `icon_<n>x<n>.png`, RGB without alpha, the layout `[app]`
-//! (`stores/ios/AppIcon.appiconset`) and `[app]` (`ui/mobile/assets/icons`) already use,
-//! and which their `embed`/`build_appicon` scripts read. `dx bundle` writes no AppIcon
-//! entry, so without a set iOS shows a white square.
+//! The iOS icon set: 13 PNGs named `icon_<n>x<n>.png`, RGB without alpha, read from the
+//! conventional locations `stores/ios/AppIcon.appiconset` or `ui/mobile/assets/icons`.
+//! `dx bundle` writes no AppIcon entry, so without a set iOS shows a white square.
 
 use super::IconError;
 use std::path::{Path, PathBuf};

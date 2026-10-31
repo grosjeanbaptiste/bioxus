@@ -16,24 +16,24 @@ them. Update it (and its date) after any act that changes that state.
 ## What this is
 
 Shared Dioxus 0.7 crates (theme, i18n, widgets, charts, shell) consumed by the
-user's Dioxus apps ([app], [app], [app], [app], [app], [app]) by git tag.
+Dioxus apps, which consume them by git tag.
 
 ## Model
 
-Rust twin of `[local path]`: one workspace, role-named packages
+One workspace, role-named packages
 under `packages/`, path dependencies between them, root-level gates run by
 `make` (same target names). Apps stay in their own repos and consume packages
 by git tag.
 
-| Package | Role (the Flutter monorepo twin) |
+| Package | Role |
 |---|---|
 | `bioxus` | Facade apps import: `bioxus::{design,widgets,charts,locale,store,sync}` |
 | `bioxus-charts` | Bar charts, pure geometry → `bioxus::charts` |
-| `bioxus-design` | Design system: tokens, constants, shared CSS (`[private package]`) |
-| `bioxus-widgets` | Responsive `AppShell` (bottom bar / rail / sidebar by CSS), `Badge` (`[private package]`) → `bioxus::widgets` |
-| `bioxus-store` | Optional DB behind a `Store` port (`[private package]`) → `bioxus::store` |
-| `bioxus-sync` | HLC + last-write-wins sync over a `Transport` port (`[private package]`, `[private package]`) → `bioxus::sync` |
-| `bioxus-locale` | i18n, open locale tags (`[private package]`) → `bioxus::locale` |
+| `bioxus-design` | Design system: tokens, constants, shared CSS |
+| `bioxus-widgets` | Responsive `AppShell` (bottom bar / rail / sidebar by CSS), `Badge` → `bioxus::widgets` |
+| `bioxus-store` | Optional DB behind a `Store` port → `bioxus::store` |
+| `bioxus-sync` | HLC + last-write-wins sync over a `Transport` port → `bioxus::sync` |
+| `bioxus-locale` | i18n, open locale tags → `bioxus::locale` |
 
 ## Conventions
 

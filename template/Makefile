@@ -1,4 +1,4 @@
-# Same target names as bioxus and the Flutter monorepo. Builds go through the heavy queue; without
+# Same target names as bioxus. Builds go through the heavy queue; without
 # `dotfiles` they fail, naming it.
 HEAVY := $(shell command -v dotfiles >/dev/null 2>&1 && echo "dotfiles heavy run --quick --" || echo "")
 
