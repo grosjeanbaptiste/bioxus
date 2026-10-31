@@ -160,3 +160,25 @@ pub fn CheckField(
         }
     }
 }
+
+/// A native checkbox presented as an on/off switch (`role="switch"`).
+#[component]
+pub fn SwitchField(
+    label: String,
+    checked: bool,
+    on_change: EventHandler<bool>,
+    #[props(default)] disabled: bool,
+) -> Element {
+    rsx! {
+        label { class: "bx-check bx-switch",
+            input {
+                r#type: "checkbox",
+                role: "switch",
+                checked,
+                disabled,
+                onchange: move |e| on_change.call(e.checked()),
+            }
+            span { "{label}" }
+        }
+    }
+}

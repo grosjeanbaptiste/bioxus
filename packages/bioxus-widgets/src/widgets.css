@@ -92,3 +92,29 @@
 .bx-row-action { cursor: pointer; }
 .bx-row-action:hover, .bx-row-action[aria-selected="true"] { background: var(--surface); }
 .bx-row-action:focus-visible { outline: 0.125rem solid var(--accent); outline-offset: -0.125rem; }
+.bx-link { padding: 0; border: 0; background: none; color: var(--accent); font: inherit; text-decoration: underline; cursor: pointer; }
+.bx-link:disabled { color: var(--dim); cursor: not-allowed; }
+.bx-hint { margin: 0; color: var(--muted); font-size: 0.8125rem; }
+.bx-btn.bx-danger { border-color: var(--danger); color: var(--danger); }
+.bx-empty { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 2rem var(--gutter); color: var(--muted); text-align: center; }
+.bx-empty h2 { margin: 0; color: var(--fg); font-size: 1.125rem; }
+.bx-kv { display: flex; justify-content: space-between; gap: 1rem; margin: 0; padding: 0.375rem 0; border-bottom: 0.0625rem solid var(--border); }
+.bx-kv dt { color: var(--muted); }
+.bx-kv dd { margin: 0; font-weight: 600; text-align: right; }
+.bx-avatar { display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-weight: 600; object-fit: cover; }
+.bx-status { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.8125rem; }
+.bx-status.bx-ok { color: var(--ok); }
+.bx-status.bx-warn { color: var(--warn); }
+.bx-status.bx-danger { color: var(--danger); }
+.bx-settings { display: flex; flex-direction: column; gap: 0.5rem; }
+.bx-breadcrumb ol { display: flex; flex-wrap: wrap; gap: 0.25rem; margin: 0; padding: 0; list-style: none; }
+.bx-breadcrumb li + li::before { content: "/"; margin-right: 0.25rem; color: var(--dim); }
+.bx-tabs { display: flex; gap: 0.25rem; border-bottom: 0.0625rem solid var(--border); overflow-x: auto; }
+.bx-tab { min-height: 2.25rem; padding: 0.375rem 0.875rem; border: 0; border-bottom: 0.125rem solid transparent; background: none; color: var(--muted); font: inherit; white-space: nowrap; cursor: pointer; }
+.bx-tab[aria-selected="true"] { border-bottom-color: var(--accent); color: var(--fg); font-weight: 600; }
+.bx-tab:disabled { color: var(--dim); cursor: not-allowed; }
+.bx-switch input { appearance: none; position: relative; width: 2.25rem; height: 1.25rem; margin: 0; border-radius: 0.625rem; background: var(--border); cursor: pointer; }
+.bx-switch input::after { content: ""; position: absolute; top: 0.125rem; left: 0.125rem; width: 1rem; height: 1rem; border-radius: 50%; background: var(--bg); }
+.bx-switch input:checked { background: var(--accent); }
+.bx-switch input:checked::after { left: 1.125rem; }
+.bx-switch input:disabled { opacity: 0.4; cursor: default; }
